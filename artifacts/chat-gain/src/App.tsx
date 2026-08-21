@@ -773,18 +773,21 @@ function Metrics() {
 function HowItWorks() {
   const features = [
     [
-      "PRIVATE CHATS",
-      "Chat with foreigners ready to chat and pay per session.",
+      "MEANINGFUL CONVERSATIONS",
+      "Enter relaxed one-to-one chats with people abroad who want a friendly voice, a fresh perspective, or a chance to practice.",
     ],
     [
-      "EARN PER CHAT",
-      "Get paid on a daily basis for every private conversation you have.",
+      "TURN TIME INTO INCOME",
+      "Build your earning rhythm around the hours that suit you. Every approved session turns your attention and time into progress.",
     ],
     [
-      "GLOBAL USERS",
-      "Chat with people worldwide. All they need is positive and encouraging words.",
+      "A WORLDWIDE COMMUNITY",
+      "Meet curious people from different cultures, exchange stories, and create genuine connections from wherever you are.",
     ],
-    ["SAFE & SECURE", "No dating, no sex talks, no sharing photos or videos."],
+    [
+      "COMFORTABLE BOUNDARIES",
+      "Keep conversations respectful and on your terms with clear community rules, reporting tools, and control over your availability.",
+    ],
   ];
   return (
     <section className="features-reference" id="how-it-works">
@@ -794,19 +797,19 @@ function HowItWorks() {
             HOW IT <span>WORKS</span>
           </h2>
           <p>
-            Choose a chat, help someone connect across cultures, and get paid
-            for your time.
+            Discover conversations that fit your interests, show up when it
+            works for you, and make every positive interaction count.
           </p>
         </div>
         <div className="features-layout">
           <div className="feature-intro reveal">
-            <span>MONETIZATION PROTOCOL</span>
+              <span>YOUR TIME, YOUR TERMS</span>
             <h3>
-              Make every
+                Turn real
               <br />
-              <em>conversation</em>
+                <em>connection</em>
               <br />
-              count.
+                into value.
             </h3>
             <RegisterButton />
           </div>
@@ -837,24 +840,25 @@ function Join() {
       <div className="reference-container">
         <div className="join-panel reveal">
           <div>
-            <span className="section-label">ACTIVATION PROTOCOL</span>
+            <span className="section-label">YOUR NEXT CHAPTER STARTS HERE</span>
             <h2>
               HOW TO <span>JOIN</span>
             </h2>
             <p>
-              Follow these steps on the registration page to initialize your
-              account.
+              Getting started is simple. Create your space, tell us what you
+              enjoy talking about, and open the door to flexible online
+              earnings.
             </p>
           </div>
           <div className="join-steps">
             <b>
-              <i>1</i> Create your account
+              <i>1</i> Build your account
             </b>
             <b>
-              <i>2</i> Choose your profile
+              <i>2</i> Set your interests
             </b>
             <b>
-              <i>3</i> Start chatting
+              <i>3</i> Meet and earn
             </b>
           </div>
           <div className="join-buttons">
@@ -865,13 +869,13 @@ function Join() {
               onClick={redirectToRegistration}
               data-testid="button-join-chat"
             >
-              CHAT NOW
+              START EARNING
             </button>
           </div>
         </div>
         <form className="join-email reveal" onSubmit={submit}>
           <label htmlFor="join-email-input">
-            Get earning tips and new paid-chat opportunities
+            Get practical earning tips and fresh conversation opportunities
           </label>
           <div>
             <input
@@ -901,15 +905,15 @@ function Stories() {
   const stories = [
     [
       "ALICE · UK",
-      "“I started chatting with foreigners for the connection, then realized my time could earn too.”",
+      "“I joined to meet people outside my everyday circle. Now my evening conversations help me cover a few important monthly expenses too.”",
     ],
     [
       "DANIEL · MEXICO",
-      "“I enjoy helping people practice English, and the time makes a real difference.”",
+      "“The best part is the variety. I can encourage someone through a tough day, learn about another culture, and earn from time I already had.”",
     ],
     [
       "MARIE · FRANCE",
-      "“A small hello became a steady way to earn online. I meet people from everywhere.”",
+      "“I began with a few open hours each week. The routine grew naturally, and the extra income has given me more breathing room.”",
     ],
   ];
   return (
@@ -920,8 +924,9 @@ function Stories() {
             SUCCESS <span>STORIES</span>
           </h2>
           <p>
-            Real people using friendly conversations to connect with foreigners
-            and earn from their time.
+            From first introductions to regular conversations, hosts are
+            building confidence, community, and flexible income one chat at a
+            time.
           </p>
         </div>
         <div className="story-grid">
