@@ -998,20 +998,20 @@ function Footer() {
             <strong>CHAT FLIP</strong>
           </button>
           <p>
-            Good conversations can make
+            Meet people, share perspective,
             <br />
-            the world feel bigger—and put extra income in your pocket.
+            and make your online time matter.
           </p>
-          <span>● GLOBAL HOSTING INFRASTRUCTURE</span>
+          <span>● A COMMUNITY BUILT AROUND CONNECTION</span>
         </div>
         <div className="footer-cta">
-          <span>GLOBAL HOSTING INFRASTRUCTURE</span>
+          <span>READY WHEN YOU ARE</span>
           <h2>
-            There is always
+            Your next
             <br />
-            <em>a paid chat</em>
+            <em>conversation</em>
             <br />
-            to start.
+            starts here.
           </h2>
           <RegisterButton />
         </div>
