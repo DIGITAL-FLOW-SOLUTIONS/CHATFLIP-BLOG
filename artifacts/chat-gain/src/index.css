@@ -177,3 +177,133 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
 .stories-reference { background: #f1fbfa; padding-top: 70px; }
 .story-card { background: rgba(255,255,255,.78); border-color: rgba(17,197,199,.18); }
 .faq-reference { background: #fffaf2; }
+
+/* Product plans: a calmer, utility-led palette to match the new energy products. */
+.investments-reference {
+  padding: 92px 0 88px;
+  background: #eef5f2;
+  border-top: 0;
+}
+.investments-reference::after {
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  left: -300px;
+  bottom: -300px;
+  border: 82px solid rgba(218, 170, 67, .14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.investment-heading { align-items: center; }
+.investment-heading h2 {
+  max-width: 720px;
+  color: #102d3b;
+  font-size: clamp(42px, 6vw, 72px);
+  letter-spacing: -.09em;
+}
+.investment-heading h2 span { color: #0b8f87; }
+.investment-heading p { max-width: 570px; color: #557079; font-size: 14px; }
+.investment-heading .section-label { color: #c48d24; }
+.investment-note {
+  padding: 12px 15px;
+  border: 1px solid rgba(11, 143, 135, .35);
+  color: #0b7771;
+  background: rgba(255,255,255,.62);
+  letter-spacing: .14em;
+}
+.investment-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 38px;
+}
+.investment-card,
+.investment-card:last-child {
+  max-width: none;
+  min-height: 385px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(16, 45, 59, .1);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 32px rgba(16, 45, 59, .08);
+}
+.investment-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 24px 38px rgba(16, 45, 59, .16);
+}
+.investment-image-wrap {
+  width: 100%;
+  height: 176px;
+  flex: 0 0 176px;
+  border-radius: 0;
+  background: #dfeae5;
+}
+.investment-image-wrap img { object-fit: cover; }
+.investment-card-content { padding: 18px 18px 16px; }
+.investment-card-heading { min-height: 48px; }
+.investment-kicker { color: #c48d24; letter-spacing: .16em; }
+.investment-card h3 { color: #102d3b; font-size: 17px; line-height: 1.05; }
+.investment-status { color: #0b8f87; }
+.investment-status i { background: #0b8f87; }
+.investment-details { gap: 13px 10px; margin-top: 17px; }
+.investment-details span { color: #789097; }
+.investment-details strong { color: #102d3b; }
+.investment-details .profit-value { color: #0b8f87; }
+.investment-action {
+  height: 43px;
+  border-radius: 10px;
+  background: #102d3b;
+  box-shadow: 0 9px 14px rgba(16, 45, 59, .18);
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+.investment-action:hover {
+  background: #0b8f87;
+  box-shadow: 0 12px 18px rgba(11, 143, 135, .24);
+}
+.investment-actions { margin-top: 34px; }
+.investment-secondary {
+  border-color: rgba(16, 45, 59, .18);
+  background: transparent;
+  color: #102d3b;
+}
+.investment-secondary:hover { border-color: #0b8f87; color: #0b7771; }
+.investment-primary {
+  background: #0b8f87;
+  box-shadow: 0 12px 22px rgba(11, 143, 135, .22);
+}
+.investment-primary:hover { background: #076f6a; }
+.investment-register { background: #c48d24; }
+.investment-register:hover { background: #a97417; }
+.investment-join { border-color: rgba(196, 141, 36, .5); color: #a97417; }
+.dark .investments-reference { background: #102d3b; }
+.dark .investment-heading h2,
+.dark .investment-card h3,
+.dark .investment-details strong,
+.dark .investment-secondary { color: #f5f8f4; }
+.dark .investment-heading p,
+.dark .investment-details span { color: #b8c9c8; }
+.dark .investment-card { background: #183d49; border-color: rgba(255,255,255,.12); }
+.dark .investment-note { background: rgba(255,255,255,.06); color: #6fe0d4; }
+
+@media (max-width: 1050px) {
+  .investment-grid { grid-template-columns: repeat(2, 1fr); }
+  .investment-card,
+  .investment-card:last-child { min-height: 365px; }
+}
+@media (max-width: 900px) {
+  .investments-reference { padding: 72px 0 68px; }
+}
+@media (max-width: 460px) {
+  .investment-grid { grid-template-columns: 1fr; }
+  .investment-card,
+  .investment-card:last-child { min-height: 0; }
+  .investment-image-wrap { height: 205px; flex-basis: 205px; }
+  .investment-card-content { padding: 18px; }
+  .investment-heading h2 { font-size: 46px; }
+  .investment-actions { margin-top: 27px; }
+}

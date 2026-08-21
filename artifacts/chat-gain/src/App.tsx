@@ -1,9 +1,9 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { ArrowRight, Check, ChevronDown, MessageSquare, Moon, Sun, X } from 'lucide-react';
-import generator1Image from '@assets/generator1_1787062714619.jpeg';
-import generator2Image from '@assets/generator2_1787062714620.jpeg';
-import generator3Image from '@assets/generator3_1787062714618.jpeg';
-import generator4Image from '@assets/generator4_1787062714619.jpeg';
+import solarPumpImage from '@assets/inv4_1787308184431.jpeg';
+import pressureWasherImage from '@assets/inv1_1787308184432.jpeg';
+import powerStationImage from '@assets/inv2_1787308184432.jpeg';
+import solarKitImage from '@assets/inv3_1787308184433.jpeg';
 
 type Person = {
   id: number;
@@ -40,11 +40,10 @@ const people: Person[] = [
 const payouts = ['LINDA W. UGX 25,000 (just now)', 'NAOMI S. UGX 72,000 (30s ago)', 'NAOMI S. UGX 105,000 (just now)', 'CYNTHIA R. UGX 72,000 (just now)', 'SARAH M. UGX 55,000 (30s ago)', 'LINDA W. UGX 210,000 (5m ago)', 'SARAH M. UGX 110,000 (just now)'];
 
 const investmentPlans: InvestmentPlan[] = [
-  { id: 1, name: 'DUROMAX GENERATOR', image: generator1Image, deposit: 'UGX 40,000', dailyProfit: 'UGX 12,000', totalDays: '30', totalProfit: 'UGX 360,000' },
-  { id: 2, name: 'HONDA INVERTER', image: generator2Image, deposit: 'UGX 55,000', dailyProfit: 'UGX 20,000', totalDays: '30', totalProfit: 'UGX 600,000' },
-  { id: 3, name: 'NINJABATT POWER STATION', image: generator3Image, deposit: 'UGX 80,000', dailyProfit: 'UGX 30,000', totalDays: '60', totalProfit: 'UGX 1,800,000' },
-  { id: 4, name: 'DEWALT COMPRESSOR', image: generator4Image, deposit: 'UGX 150,000', dailyProfit: 'UGX 45,000', totalDays: '60', totalProfit: 'UGX 2,700,000' },
-  { id: 5, name: 'POWER GENERATOR', image: generator1Image, deposit: 'UGX 250,000', dailyProfit: 'UGX 55,000', totalDays: '120', totalProfit: 'UGX 6,600,000' },
+  { id: 1, name: 'SOLAR WATER PUMP', image: solarPumpImage, deposit: 'UGX 40,000', dailyProfit: 'UGX 12,000', totalDays: '30', totalProfit: 'UGX 360,000' },
+  { id: 2, name: 'POWER WASHER', image: pressureWasherImage, deposit: 'UGX 55,000', dailyProfit: 'UGX 20,000', totalDays: '30', totalProfit: 'UGX 600,000' },
+  { id: 3, name: 'PORTABLE POWER STATION', image: powerStationImage, deposit: 'UGX 80,000', dailyProfit: 'UGX 30,000', totalDays: '60', totalProfit: 'UGX 1,800,000' },
+  { id: 4, name: 'SOLAR HOME KIT', image: solarKitImage, deposit: 'UGX 150,000', dailyProfit: 'UGX 45,000', totalDays: '60', totalProfit: 'UGX 2,700,000' },
 ];
 
 const faqs = [
@@ -176,23 +175,23 @@ function InvestmentCard({ plan }: { plan: InvestmentPlan }) {
   return <article className="investment-card reveal">
     <div className="investment-image-wrap"><img src={plan.image} alt={plan.name} /></div>
     <div className="investment-card-content">
-      <div className="investment-card-heading"><div><span className="investment-kicker">CHAT FLIP PLAN {String(plan.id).padStart(2, '0')}</span><h3>{plan.name}</h3></div><span className="investment-status"><i /> OPEN NOW</span></div>
+      <div className="investment-card-heading"><div><span className="investment-kicker">PRODUCT PLAN {String(plan.id).padStart(2, '0')}</span><h3>{plan.name}</h3></div><span className="investment-status"><i /> AVAILABLE</span></div>
       <div className="investment-details">
         <div><span>DEPOSIT</span><strong>{plan.deposit}</strong></div>
         <div><span>DAILY PROFIT</span><strong className="profit-value">{plan.dailyProfit}</strong></div>
         <div><span>TOTAL DAYS</span><strong>{plan.totalDays}</strong></div>
         <div><span>TOTAL PROFIT</span><strong className="profit-value">{plan.totalProfit}</strong></div>
       </div>
-       <button className="investment-action" type="button" onClick={redirectToRegistration} data-testid={`button-invest-${plan.id}`}>INVEST NOW <ArrowRight size={14} /></button>
+       <button className="investment-action" type="button" onClick={redirectToRegistration} data-testid={`button-invest-${plan.id}`}>CHOOSE PLAN <ArrowRight size={14} /></button>
     </div>
   </article>;
 }
 
 function Investments() {
   return <section className="investments-reference" id="investments"><div className="reference-container">
-    <div className="investment-heading reveal"><div><span className="section-label">POWER YOUR NEXT MOVE</span><h2>INVESTMENT <span>PLANS</span></h2><p>Choose a plan, grow your balance, and make your time online work harder for you.</p></div><span className="investment-note">UGX PLANS · CLEAR RETURNS</span></div>
+     <div className="investment-heading reveal"><div><span className="section-label">BUILD A BRIGHTER TOMORROW</span><h2>SMART <span>PRODUCT PLANS</span></h2><p>Back practical energy tools that make everyday work easier. Pick a product, start small, and grow with a clear plan.</p></div><span className="investment-note">REAL PRODUCTS · REAL IMPACT</span></div>
      <div className="investment-grid">{investmentPlans.map((plan) => <InvestmentCard key={plan.id} plan={plan} />)}</div>
-     <div className="investment-actions reveal"><button className="investment-secondary" type="button" onClick={redirectToRegistration} data-testid="button-invest-chat">CHAT NOW</button><button className="reference-button investment-primary" type="button" onClick={redirectToRegistration} data-testid="button-invest-now">INVEST NOW <ArrowRight size={14} /></button><RegisterButton className="investment-register" /><button className="investment-secondary investment-join" type="button" onClick={redirectToRegistration} data-testid="button-invest-join">JOIN NOW</button></div>
+     <div className="investment-actions reveal"><button className="investment-secondary" type="button" onClick={redirectToRegistration} data-testid="button-invest-chat">ASK A QUESTION</button><button className="reference-button investment-primary" type="button" onClick={redirectToRegistration} data-testid="button-invest-now">START A PLAN <ArrowRight size={14} /></button><RegisterButton className="investment-register" /><button className="investment-secondary investment-join" type="button" onClick={redirectToRegistration} data-testid="button-invest-join">SEE ALL OPTIONS</button></div>
   </div></section>;
 }
 
