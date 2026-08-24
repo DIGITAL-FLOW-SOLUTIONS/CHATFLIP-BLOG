@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap');
 
-:root { --paper: #fff8fc; --white: #fff; --ink: #24133f; --muted: #766a8e; --orange: #7c3aed; --orange-dark: #6221c7; --green: #11c5c7; --pink: #ff4f9a; --sun: #ffd166; --line: #eadff4; --body: 'DM Sans', sans-serif; --display: 'Outfit', sans-serif; }
-.dark { --paper: #130d26; --white: #20163b; --ink: #fff7fc; --muted: #c5b8db; --orange: #a47bff; --orange-dark: #8b5cf6; --green: #2bd9d2; --pink: #ff79bb; --sun: #ffd166; --line: #3b2b58; }
+:root { --paper: #fffaf7; --white: #fff; --ink: #2d1718; --muted: #786b6b; --orange: #dc2626; --orange-dark: #a71919; --green: #11aeb7; --pink: #e53935; --sun: #ffd166; --line: #eadfdf; --body: 'DM Sans', sans-serif; --display: 'Outfit', sans-serif; }
+.dark { --paper: #171313; --white: #241a1a; --ink: #fff7f5; --muted: #cbbbbb; --orange: #f0524d; --orange-dark: #c52f2b; --green: #2bd9d2; --pink: #ff6b66; --sun: #ffd166; --line: #493333; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
@@ -350,6 +350,50 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
   font: 700 16px/1 var(--body);
 }
 .dark .withdrawal-feed { background: #fff; }
+.withdrawal-avatar-red { background: #dc2626; }
+
+/* Final red palette pass: remove legacy purple accents from every visible surface. */
+.reference-mark,
+.reference-button,
+.card-chat,
+.investment-register,
+.join-email button { background: linear-gradient(135deg, #dc2626, #a71919); }
+.reference-button:hover,
+.card-chat:hover { background: linear-gradient(135deg, #b91c1c, #7f1d1d); }
+.reference-links a:hover,
+.footer-bottom a:hover,
+.language-button:hover,
+.round-button:hover,
+.more-button:hover,
+.profile-meta b,
+.feature-card > span,
+.story-card small,
+.faq-item.open button svg,
+.modal-kicker { color: #dc2626; }
+.language-button:hover,
+.round-button:hover,
+.more-button:hover { border-color: #dc2626; }
+.reference-hero {
+  background:
+    radial-gradient(circle at 14% 22%, rgba(220,38,38,.28), transparent 24%),
+    radial-gradient(circle at 88% 78%, rgba(17,174,183,.25), transparent 25%),
+    linear-gradient(125deg, #211616 0%, #4a1c22 52%, #102433 100%);
+}
+.reference-hero h1 span { color: #ef4444; }
+.voices-reference {
+  background-color: #fffaf7;
+  background-image: radial-gradient(rgba(220,38,38,.11) 1px, transparent 1px);
+}
+.live-heading { border-bottom-color: rgba(220,38,38,.16); }
+.live-heading p { color: #b91c1c; }
+.reference-person-card { border-color: rgba(220,38,38,.14); }
+.support-card { background: linear-gradient(135deg, #0e8f98 0%, #1d6fc4 52%, #b91c1c 100%); }
+.investments-reference::before { border-color: rgba(220,38,38,.1); }
+.metrics-reference { background: #2d1718; }
+.features-reference { background: #fffaf7; }
+.join-reference { background: linear-gradient(180deg, #fffaf7 0%, #fff0e7 100%); }
+.join-panel { border-color: rgba(220,38,38,.15); }
+.chat-modal { box-shadow: 10px 10px 0 #dc2626; }
 @media (max-width: 460px) {
   .withdrawal-feed {
     top: 128px;
