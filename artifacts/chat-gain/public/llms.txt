@@ -1,6 +1,6 @@
 # MALIGAIN CHAT
 
-> MALIGAIN CHAT is the official public website at https://maligain.net/ for connecting with foreigners through respectful conversations and exploring flexible online opportunities.
+> MALIGAIN CHAT is the official public website at https://maligain.org/ for connecting with foreigners through respectful conversations and exploring flexible online opportunities.
 
 ## About
 
@@ -8,9 +8,9 @@ MALIGAIN CHAT helps people in Uganda discover chat opportunities, connect with p
 
 ## Important URLs
 
-- Official homepage: https://maligain.net/
-- XML sitemap: https://maligain.net/sitemap.xml
-- Expanded machine-readable summary: https://maligain.net/llms-full.txt
+- Official homepage: https://maligain.org/
+- XML sitemap: https://maligain.org/sitemap.xml
+- Expanded machine-readable summary: https://maligain.org/llms-full.txt
 
 ## Common search intents
 

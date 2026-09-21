@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://maligain.net/sitemap.xml
+Sitemap: https://maligain.org/sitemap.xml
 
 # Make the public homepage available to search and answer-focused crawlers.
 User-agent: Googlebot
