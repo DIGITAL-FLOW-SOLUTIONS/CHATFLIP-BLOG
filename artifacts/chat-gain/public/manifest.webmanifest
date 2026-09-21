@@ -1,12 +1,12 @@
 {
   "name": "CHAT FLIP — Chat with Foreigners & Earn Online",
   "short_name": "CHAT FLIP",
-  "description": "Chat with foreigners, build meaningful connections, and explore flexible online business opportunities.",
+  "description": "MALIGAIN CHAT helps people connect with foreigners and explore flexible online opportunities.",
   "lang": "en-UG",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#7c3aed",
-  "background_color": "#fffaff",
+  "theme_color": "#b91c1c",
+  "background_color": "#fffaf5",
   "icons": [
     {
       "src": "/chat-gain-logo.png",

@@ -205,8 +205,8 @@ const investmentPlans: InvestmentPlan[] = [
 
 const faqs = [
   [
-    "WHAT IS CHAT FLIP?",
-    "CHAT FLIP helps you earn by chatting with foreigners. Choose the conversations you enjoy, spend time with people around the world, and get paid for your approved chat time.",
+    "WHAT IS MALIGAIN CHAT?",
+    "MALIGAIN CHAT helps you earn by chatting with foreigners. Choose the conversations you enjoy, spend time with people around the world, and get paid for your approved chat time.",
   ],
   [
     "HOW DO I EARN MONEY?",
@@ -221,7 +221,7 @@ const faqs = [
     "Payouts are processed through mobile money and other verified gateways. You can track the time you spend and your earnings inside the platform.",
   ],
   [
-    "IS CHAT FLIP LEGITIMATE?",
+    "IS MALIGAIN CHAT LEGITIMATE?",
     "You stay in control at every step. Use our report tools, protect your personal information, and leave any conversation that does not feel right.",
   ],
   [
@@ -403,12 +403,12 @@ function Hero() {
       <div className="hero-shape hero-shape-two" />
       <div className="reference-container hero-content reveal">
         <h1>
-          Get paid to
+          MALIGAIN CHAT
           <br />
           <span> Chat Online.</span>
         </h1>
         <p>
-          CHAT FLIP lets you earn by chatting with foreigners who want to
+          MALIGAIN CHAT lets you earn by chatting with foreigners who want to
           connect, practice, and share a little time. Turn your conversation
           skills into flexible income.
         </p>
