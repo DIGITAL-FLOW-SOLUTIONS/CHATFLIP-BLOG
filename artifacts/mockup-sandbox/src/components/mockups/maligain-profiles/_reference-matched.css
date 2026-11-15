@@ -1,0 +1,105 @@
+.maligain-profile-preview {
+  width: min(100%, 430px);
+  min-height: 100vh;
+  margin: 0 auto;
+  background: #eaf4f6;
+  color: #202631;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.maligain-preview-top {
+  height: 50px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  border-bottom: 1px solid #d9e5e8;
+  box-shadow: 0 1px 5px rgba(27, 50, 61, .06);
+}
+.maligain-brand-mark {
+  width: 25px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  color: #0c3947;
+  font-size: 25px;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1;
+}
+.maligain-brand-copy { display: flex; flex: 1; flex-direction: column; gap: 1px; }
+.maligain-brand-copy strong { color: #153c4c; font-size: 17px; line-height: 1; font-weight: 900; letter-spacing: -.04em; }
+.maligain-brand-copy span { padding-left: 18px; font-size: 9px; color: #475b67; }
+.maligain-preview-top button {
+  width: 34px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #1b242b;
+}
+.maligain-profile-list { padding: 5px 4px 14px; display: grid; gap: 5px; }
+.maligain-profile {
+  min-height: 69px;
+  padding: 5px 6px;
+  display: grid;
+  grid-template-columns: 57px minmax(68px, 1fr) 106px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(205, 220, 224, .86);
+  border-radius: 17px;
+  background: linear-gradient(112deg, #fff 5%, #fff 69%, #f3fcfc);
+  box-shadow: 0 2px 4px rgba(30, 63, 75, .09);
+}
+.maligain-avatar { width: 56px; height: 56px; position: relative; border-radius: 13px; overflow: visible; background: #dce9ed; }
+.maligain-avatar img { width: 56px; height: 56px; display: block; object-fit: cover; border-radius: 13px; }
+.maligain-avatar > i { width: 11px; height: 11px; position: absolute; right: -2px; bottom: -1px; border: 2px solid #fff; border-radius: 50%; background: #12b990; }
+.maligain-profile-info { min-width: 0; align-self: center; }
+.maligain-profile-info h2 { overflow: hidden; color: #161c26; font-size: 12px; line-height: 1.08; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; text-overflow: ellipsis; }
+.maligain-age { display: block; margin-top: 3px; color: #134e7b; font-size: 11px; line-height: 1; font-weight: 800; }
+.maligain-profile-info p { margin-top: 4px; display: flex; align-items: center; gap: 4px; color: #3e4953; font-size: 7px; line-height: 1; font-weight: 700; white-space: nowrap; }
+.maligain-profile-info p span { font-size: 12px; }
+.maligain-profile-actions { min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; padding: 1px 0; }
+.maligain-status { height: 13px; display: flex; align-items: center; justify-content: flex-start; gap: 3px; color: #899ba6; font-size: 7px; line-height: 1; font-weight: 700; white-space: nowrap; }
+.maligain-status > i { width: 5px; height: 5px; margin-right: 0; border-radius: 50%; background: #9fb5c1; }
+.maligain-status.is-typing { color: #169f82; }
+.maligain-status.is-typing > i { background: #20a983; }
+.maligain-status.is-typing > i:nth-child(2) { opacity: .72; }
+.maligain-status.is-typing > i:nth-child(3) { opacity: .48; }
+.maligain-buttons { display: flex; align-items: center; gap: 4px; }
+.maligain-book {
+  height: 31px;
+  min-width: 0;
+  flex: 1;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 18px;
+  background: #104657;
+  color: #fff;
+  box-shadow: 0 3px 5px rgba(15, 56, 72, .16);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.maligain-message {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  background: #d9f4f2;
+  color: #174a58;
+}
+.maligain-book:focus-visible, .maligain-message:focus-visible, .maligain-preview-top button:focus-visible { outline: 2px solid #168f8f; outline-offset: 2px; }
+@media (max-width: 330px) {
+  .maligain-profile { grid-template-columns: 50px minmax(58px, 1fr) 100px; gap: 5px; padding-inline: 4px; }
+  .maligain-avatar, .maligain-avatar img { width: 49px; height: 53px; }
+  .maligain-profile-info h2 { font-size: 11px; }
+  .maligain-status { font-size: 6px; }
+}

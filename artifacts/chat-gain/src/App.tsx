@@ -35,93 +35,83 @@ type InvestmentPlan = {
 const people: Person[] = [
   {
     id: 1,
-    name: "Margaret W.",
-    age: 58,
-    country: "USA",
-    flag: "🇺🇸",
-    photo:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=180&q=85",
+    name: "Alira Kone",
+    age: 34,
+    country: "SENEGAL",
+    flag: "🇸🇳",
+    photo: "/profiles/alira-kone.jpg",
   },
   {
     id: 2,
-    name: "Robert H.",
-    age: 62,
-    country: "UK",
-    flag: "🇬🇧",
-    photo:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=180&q=85",
+    name: "Tavian Marek",
+    age: 41,
+    country: "CROATIA",
+    flag: "🇭🇷",
+    photo: "/profiles/tavian-marek.jpg",
   },
   {
     id: 3,
-    name: "Helga S.",
-    age: 55,
-    country: "GERMANY",
-    flag: "🇩🇪",
-    photo:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=180&q=85",
+    name: "Sora Min",
+    age: 30,
+    country: "JAPAN",
+    flag: "🇯🇵",
+    photo: "/profiles/sora-min.jpg",
   },
   {
     id: 4,
-    name: "James M.",
-    age: 60,
-    country: "CANADA",
-    flag: "🇨🇦",
-    photo:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=180&q=85",
+    name: "Devin Adebayo",
+    age: 38,
+    country: "NIGERIA",
+    flag: "🇳🇬",
+    photo: "/profiles/devin-adebayo.jpg",
   },
   {
     id: 5,
-    name: "Karen P.",
-    age: 51,
-    country: "AUSTRALIA",
-    flag: "🇦🇺",
-    photo:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=180&q=85",
+    name: "Maelle Rovira",
+    age: 36,
+    country: "SPAIN",
+    flag: "🇪🇸",
+    photo: "/profiles/maelle-rovira.jpg",
   },
   {
     id: 6,
-    name: "Lars E.",
-    age: 60,
-    country: "SWEDEN",
-    flag: "🇸🇪",
-    photo:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=180&q=85",
+    name: "Oren Kimani",
+    age: 43,
+    country: "TANZANIA",
+    flag: "🇹🇿",
+    photo: "/profiles/oren-kimani.jpg",
   },
   {
     id: 7,
-    name: "Mina R.",
-    age: 57,
-    country: "FRANCE",
-    flag: "🇫🇷",
-    photo:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=180&q=85",
+    name: "Amara Idrissi",
+    age: 32,
+    country: "MOROCCO",
+    flag: "🇲🇦",
+    photo: "/profiles/amara-idrissi.jpg",
   },
   {
     id: 8,
-    name: "Peter K.",
-    age: 64,
-    country: "NORWAY",
-    flag: "🇳🇴",
-    photo:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=180&q=85",
+    name: "Enzo Mabaso",
+    age: 39,
+    country: "SOUTH AFRICA",
+    flag: "🇿🇦",
+    photo: "/profiles/enzo-mabaso.jpg",
   },
   {
     id: 9,
-    name: "Nadia T.",
-    age: 54,
-    country: "ITALY",
-    flag: "🇮🇹",
-    photo:
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=180&q=85",
+    name: "Liora Haddad",
+    age: 35,
+    country: "LEBANON",
+    flag: "🇱🇧",
+    photo: "/profiles/liora-haddad.jpg",
   },
   {
     id: 10,
-    name: "Sofia J.",
-    age: 59,
-    country: "IRELAND",
-    flag: "🇮🇪",
-    photo:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=180&q=85",
+    name: "Rohan Nwosu",
+    age: 42,
+    country: "INDIA",
+    flag: "🇮🇳",
+    photo: "/profiles/rohan-nwosu.jpg",
   },
 ];
 
@@ -485,56 +475,55 @@ function PersonCard({
 }) {
   return (
     <article className="reference-person-card reveal">
-      <div className="profile-head">
-        <div className="profile-image-wrap">
-          <img src={person.photo} alt="" />
-          <i />
-        </div>
-        <div className="profile-name">
-          <h3>
-            {person.name} <small>{person.age}y</small>
-          </h3>
-          <p>
-            {person.flag} <span>{person.country}</span>
-          </p>
-        </div>
+      <div className="profile-image-wrap">
+        <img src={person.photo} alt={`Portrait of ${person.name}`} />
+        <i aria-label="Online" />
       </div>
-      <div className="profile-meta">
-        <span
-          className={isTyping ? "typing-status" : ""}
-          aria-label={isTyping ? "Typing" : "Looking to talk"}
-        >
-          {isTyping ? (
-            <>
-              <i />
-              <i />
-              <i /> TYPING...
-            </>
-          ) : (
-            <>
-              <i /> LOOKING TO TALK
-            </>
-          )}
-        </span>
-        <b>ACTIVE NOW</b>
+      <div className="profile-name">
+        <h3>{person.name}</h3>
+        <small>{person.age}y</small>
+        <p>
+          <span className="profile-flag">{person.flag}</span>
+          <span>{person.country}</span>
+        </p>
       </div>
-      <div className="profile-actions">
-        <button
-          className="card-chat"
-          type="button"
-          onClick={redirectToRegistration}
-          data-testid={`button-chat-${person.id}`}
-        >
-          CHAT NOW
-        </button>
-        <button
-          className="icon-chat"
-          type="button"
-          aria-label={`Message ${person.name}`}
-          onClick={() => onSelect(person)}
-        >
-          <MessageSquare size={16} />
-        </button>
+      <div className="profile-actions-column">
+        <div className="profile-meta">
+          <span
+            className={isTyping ? "typing-status" : ""}
+            aria-label={isTyping ? "Typing" : "Looking to talk"}
+          >
+            {isTyping ? (
+              <>
+                <i aria-hidden="true" />
+                <i aria-hidden="true" />
+                <i aria-hidden="true" /> TYPING...
+              </>
+            ) : (
+              <>
+                <i aria-hidden="true" /> LOOKING TO TALK
+              </>
+            )}
+          </span>
+        </div>
+        <div className="profile-actions">
+          <button
+            className="card-chat"
+            type="button"
+            onClick={redirectToRegistration}
+            data-testid={`button-chat-${person.id}`}
+          >
+            Book Chat
+          </button>
+          <button
+            className="icon-chat"
+            type="button"
+            aria-label={`Message ${person.name}`}
+            onClick={() => onSelect(person)}
+          >
+            <MessageSquare size={17} />
+          </button>
+        </div>
       </div>
     </article>
   );
@@ -576,33 +565,20 @@ function Voices() {
             <h2>
               <i /> LIVE FOREIGNERS ONLINE
             </h2>
-            <p>TAP ANY PROFILE TO START A PAID CHAT NOW</p>
+            <p>TAP A PROFILE TO BOOK YOUR CHAT</p>
           </div>
         </div>
         <div className="reference-grid">
           {people
-            .slice(0, 6)
-            .map((person, index) =>
-              index === 6 ? null : (
-                <PersonCard
-                  key={person.id}
-                  person={person}
-                  isTyping={typingIds.includes(person.id)}
-                  onSelect={setSelected}
-                />
-              ),
-            )}
-          <SupportCard />
-        </div>
-        <div className="reference-grid reference-grid-lower">
-          {people.slice(6).map((person) => (
+            .map((person) => (
             <PersonCard
               key={person.id}
               person={person}
               isTyping={typingIds.includes(person.id)}
               onSelect={setSelected}
             />
-          ))}
+            ))}
+          <SupportCard />
         </div>
         <button
           className="more-button reveal"

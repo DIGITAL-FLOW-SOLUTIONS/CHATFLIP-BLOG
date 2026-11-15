@@ -424,3 +424,239 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
   .investment-heading h2 { font-size: 46px; }
   .investment-actions { margin-top: 27px; }
 }
+
+/* Live profile list: compact phone-first cards matching the MALIGAIN reference. */
+.voices-reference {
+  padding: 16px 0 40px;
+  background: #eaf4f6;
+  background-image: linear-gradient(180deg, #eef6f8 0%, #e7f1f4 100%);
+}
+.voices-reference > .reference-container {
+  width: min(680px, calc(100% - 8px));
+}
+.voices-reference .live-heading {
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px;
+  padding: 0 3px;
+  border: 0;
+}
+.voices-reference .live-heading h2 {
+  color: #183e4d;
+  font-size: 16px;
+  letter-spacing: -.035em;
+}
+.voices-reference .live-heading h2 i {
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  background: #16a985;
+}
+.voices-reference .live-heading p {
+  margin-top: 3px;
+  color: #6d8791;
+  font: 700 8px var(--display);
+  letter-spacing: .08em;
+}
+.voices-reference .reference-grid,
+.voices-reference .reference-grid-lower {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 5px;
+  margin-top: 0;
+}
+.voices-reference .reference-person-card {
+  min-width: 0;
+  min-height: 70px;
+  padding: 5px 6px;
+  display: grid;
+  grid-template-columns: 56px minmax(65px, 1fr) 106px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(205, 220, 224, .9);
+  border-radius: 16px;
+  background: linear-gradient(112deg, #fff 5%, #fff 70%, #f3fcfc);
+  box-shadow: 0 2px 5px rgba(30, 63, 75, .1);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.voices-reference .reference-person-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(30, 63, 75, .14);
+}
+.voices-reference .profile-image-wrap {
+  width: 56px;
+  height: 56px;
+}
+.voices-reference .profile-image-wrap img {
+  width: 56px;
+  height: 56px;
+  border-radius: 13px;
+}
+.voices-reference .profile-image-wrap i {
+  right: -2px;
+  bottom: -1px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #fff;
+  background: #16b890;
+}
+.voices-reference .profile-name {
+  min-width: 0;
+  align-self: center;
+}
+.voices-reference .profile-name h3 {
+  overflow: hidden;
+  color: #171e26;
+  font: 800 12px/1.08 var(--display);
+  letter-spacing: -.025em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.voices-reference .profile-name > small {
+  display: block;
+  margin-top: 3px;
+  color: #14517a;
+  font: 800 11px/1 var(--display);
+}
+.voices-reference .profile-name p {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+  font: 700 7px/1 var(--display);
+  white-space: nowrap;
+}
+.voices-reference .profile-name p .profile-flag {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 12px;
+}
+.voices-reference .profile-name p span:not(.profile-flag) {
+  overflow: hidden;
+  margin: 0;
+  color: #43515b;
+  font-size: 7px;
+  letter-spacing: .025em;
+  text-overflow: ellipsis;
+}
+.voices-reference .profile-actions-column {
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1px 0;
+}
+.voices-reference .profile-meta {
+  height: 13px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  border: 0;
+  color: #899ba6;
+  font: 700 7px/1 var(--display);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.voices-reference .profile-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.voices-reference .profile-meta span i,
+.voices-reference .profile-meta .typing-status i {
+  width: 5px !important;
+  height: 5px !important;
+  margin: 0 !important;
+  border: 0;
+  background: #9fb5c1 !important;
+}
+.voices-reference .profile-meta .typing-status {
+  color: #169f82;
+}
+.voices-reference .profile-meta .typing-status i {
+  background: #20a983 !important;
+}
+.voices-reference .profile-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+.voices-reference .card-chat {
+  height: 31px;
+  min-width: 0;
+  flex: 1;
+  padding: 0 7px;
+  border-radius: 18px;
+  background: #104657;
+  box-shadow: 0 3px 5px rgba(15, 56, 72, .17);
+  font: 700 10px/1 var(--body);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.voices-reference .card-chat:hover {
+  background: #0b3948;
+}
+.voices-reference .icon-chat {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  border-radius: 10px;
+  background: #d9f4f2;
+  color: #174a58;
+}
+.voices-reference .support-card {
+  grid-column: auto;
+  min-height: 0;
+  margin-top: 2px;
+  padding: 17px 19px;
+  border: 1px solid rgba(205, 220, 224, .9);
+  border-radius: 15px;
+  background: linear-gradient(120deg, #104657, #176674);
+  color: #fff;
+  box-shadow: 0 3px 7px rgba(30, 63, 75, .1);
+}
+.voices-reference .support-card > span { color: #8be0ce; }
+.voices-reference .support-card h3 { margin-top: 7px; font-size: 18px; }
+.voices-reference .support-card p { margin-top: 5px; font-size: 11px; }
+.voices-reference .support-card button {
+  width: auto;
+  min-width: 180px;
+  height: 34px;
+  margin-top: 12px;
+  padding: 0 18px;
+  background: #fff;
+  color: #104657;
+}
+@media (max-width: 340px) {
+  .voices-reference .reference-person-card {
+    grid-template-columns: 51px minmax(56px, 1fr) 101px;
+    gap: 5px;
+    padding-inline: 4px;
+  }
+  .voices-reference .profile-image-wrap,
+  .voices-reference .profile-image-wrap img {
+    width: 50px;
+    height: 54px;
+  }
+  .voices-reference .profile-name h3 { font-size: 11px; }
+  .voices-reference .profile-meta { font-size: 6px; }
+}
+@media (max-width: 600px) {
+  .voices-reference { padding-top: 6px; }
+  .voices-reference .live-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
