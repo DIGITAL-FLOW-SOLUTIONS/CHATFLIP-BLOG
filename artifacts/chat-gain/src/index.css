@@ -579,6 +579,18 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
 .voices-reference .profile-meta .typing-status i {
   background: #20a983 !important;
 }
+.voices-reference .profile-meta .greeting-status {
+  max-width: 100%;
+  overflow: hidden;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: #f0eaff;
+  color: #7541a8;
+  font: 700 8px/1 var(--display);
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .voices-reference .profile-actions {
   min-width: 0;
   display: flex;
@@ -645,6 +657,7 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
   }
   .voices-reference .profile-name h3 { font-size: 11px; }
   .voices-reference .profile-meta { font-size: 6px; }
+  .voices-reference .profile-meta .greeting-status { font-size: 6px; }
 }
 @media (max-width: 600px) {
   .voices-reference { padding-top: 6px; }

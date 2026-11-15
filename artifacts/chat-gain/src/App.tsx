@@ -20,7 +20,10 @@ type Person = {
   country: string;
   flag: string;
   photo: string;
+  greeting: string;
 };
+
+type ChatPresence = "looking" | "typing" | "message";
 
 type InvestmentPlan = {
   id: number;
@@ -40,6 +43,7 @@ const people: Person[] = [
     country: "SENEGAL",
     flag: "🇸🇳",
     photo: "/profiles/alira-kone.jpg",
+    greeting: "Hey there! 👋",
   },
   {
     id: 2,
@@ -48,6 +52,7 @@ const people: Person[] = [
     country: "CROATIA",
     flag: "🇭🇷",
     photo: "/profiles/tavian-marek.jpg",
+    greeting: "Bok! 😊",
   },
   {
     id: 3,
@@ -56,6 +61,7 @@ const people: Person[] = [
     country: "JAPAN",
     flag: "🇯🇵",
     photo: "/profiles/sora-min.jpg",
+    greeting: "Hello! ✨",
   },
   {
     id: 4,
@@ -64,6 +70,7 @@ const people: Person[] = [
     country: "NIGERIA",
     flag: "🇳🇬",
     photo: "/profiles/devin-adebayo.jpg",
+    greeting: "How far? 😄",
   },
   {
     id: 5,
@@ -72,6 +79,7 @@ const people: Person[] = [
     country: "SPAIN",
     flag: "🇪🇸",
     photo: "/profiles/maelle-rovira.jpg",
+    greeting: "Hola, friend! 🌞",
   },
   {
     id: 6,
@@ -80,6 +88,7 @@ const people: Person[] = [
     country: "TANZANIA",
     flag: "🇹🇿",
     photo: "/profiles/oren-kimani.jpg",
+    greeting: "Karibu! 🌍",
   },
   {
     id: 7,
@@ -88,6 +97,7 @@ const people: Person[] = [
     country: "MOROCCO",
     flag: "🇲🇦",
     photo: "/profiles/amara-idrissi.jpg",
+    greeting: "Salam! 💬",
   },
   {
     id: 8,
@@ -96,6 +106,7 @@ const people: Person[] = [
     country: "SOUTH AFRICA",
     flag: "🇿🇦",
     photo: "/profiles/enzo-mabaso.jpg",
+    greeting: "Howzit! 👋",
   },
   {
     id: 9,
@@ -104,6 +115,7 @@ const people: Person[] = [
     country: "LEBANON",
     flag: "🇱🇧",
     photo: "/profiles/liora-haddad.jpg",
+    greeting: "Ahlan! 😊",
   },
   {
     id: 10,
@@ -112,6 +124,7 @@ const people: Person[] = [
     country: "INDIA",
     flag: "🇮🇳",
     photo: "/profiles/rohan-nwosu.jpg",
+    greeting: "Namaste! 🙌",
   },
 ];
 
@@ -467,12 +480,15 @@ function ProfileModal({
 function PersonCard({
   person,
   onSelect,
-  isTyping,
+  presence,
 }: {
   person: Person;
   onSelect: (person: Person) => void;
-  isTyping: boolean;
+  presence: ChatPresence;
 }) {
+  const isTyping = presence === "typing";
+  const isMessage = presence === "message";
+
   return (
     <article className="reference-person-card reveal">
       <div className="profile-image-wrap">
@@ -490,18 +506,29 @@ function PersonCard({
       <div className="profile-actions-column">
         <div className="profile-meta">
           <span
-            className={isTyping ? "typing-status" : ""}
-            aria-label={isTyping ? "Typing" : "Looking to talk"}
+            className={
+              isTyping ? "typing-status" : isMessage ? "greeting-status" : ""
+            }
+            aria-label={
+              isTyping
+                ? `${person.name} is typing`
+                : isMessage
+                  ? `${person.name} says ${person.greeting}`
+                  : "Looking to talk"
+            }
+            title={isMessage ? person.greeting : undefined}
           >
             {isTyping ? (
               <>
                 <i aria-hidden="true" />
                 <i aria-hidden="true" />
-                <i aria-hidden="true" /> TYPING...
+                <i aria-hidden="true" /> typing...
               </>
+            ) : isMessage ? (
+              person.greeting
             ) : (
               <>
-                <i aria-hidden="true" /> LOOKING TO TALK
+                <i aria-hidden="true" /> Looking to talk
               </>
             )}
           </span>
@@ -531,31 +558,55 @@ function PersonCard({
 
 function Voices() {
   const [selected, setSelected] = useState<Person | null>(null);
-  const [typingIds, setTypingIds] = useState<number[]>([]);
+  const [presenceById, setPresenceById] = useState<
+    Partial<Record<number, ChatPresence>>
+  >({});
   useEffect(() => {
-    let typingTimer: number;
-    const showNextTyping = () => {
-      typingTimer = window.setTimeout(
-        () => {
-          const typingCount = 4 + Math.floor(Math.random() * 2);
-          const nextTypingIds = [...people]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, typingCount)
-            .map((person) => person.id);
-          setTypingIds(nextTypingIds);
-          typingTimer = window.setTimeout(
-            () => {
-              setTypingIds([]);
-              showNextTyping();
-            },
-            1800 + Math.random() * 2200,
-          );
-        },
-        3200 + Math.random() * 4800,
-      );
+    let cycleTimer: number;
+    let messageTimer: number;
+    let resetTimer: number;
+
+    const setPresence = (personIds: number[], presence: ChatPresence) => {
+      setPresenceById((current) => {
+        const next = { ...current };
+        personIds.forEach((id) => {
+          next[id] = presence;
+        });
+        return next;
+      });
     };
-    showNextTyping();
-    return () => window.clearTimeout(typingTimer);
+
+    const showNextTyping = () => {
+      const typingCount = 4 + Math.floor(Math.random() * 2);
+      const activeIds = [...people]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, typingCount)
+        .map((person) => person.id);
+
+      setPresence(activeIds, "typing");
+
+      messageTimer = window.setTimeout(() => {
+        setPresence(activeIds, "message");
+        resetTimer = window.setTimeout(() => {
+          setPresence(activeIds, "looking");
+          cycleTimer = window.setTimeout(
+            showNextTyping,
+            1800 + Math.random() * 2400,
+          );
+        }, 2400);
+      }, 1200);
+    };
+
+    cycleTimer = window.setTimeout(
+      showNextTyping,
+      3200 + Math.random() * 4800,
+    );
+
+    return () => {
+      window.clearTimeout(cycleTimer);
+      window.clearTimeout(messageTimer);
+      window.clearTimeout(resetTimer);
+    };
   }, []);
   return (
     <section className="voices-reference" id="voices">
@@ -574,7 +625,7 @@ function Voices() {
             <PersonCard
               key={person.id}
               person={person}
-              isTyping={typingIds.includes(person.id)}
+              presence={presenceById[person.id] ?? "looking"}
               onSelect={setSelected}
             />
             ))}
