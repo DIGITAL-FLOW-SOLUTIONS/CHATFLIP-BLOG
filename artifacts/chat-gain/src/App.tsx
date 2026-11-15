@@ -8,10 +8,10 @@ import {
   Sun,
   X,
 } from "lucide-react";
-import solarPumpImage from "@assets/inv4_1787308184431.jpeg";
-import pressureWasherImage from "@assets/inv1_1787308184432.jpeg";
-import powerStationImage from "@assets/inv2_1787308184432.jpeg";
-import solarKitImage from "@assets/inv3_1787308184433.jpeg";
+import solarPumpImage from "./assets/investments/solar-water-pump.jpeg";
+import pressureWasherImage from "./assets/investments/pressure-washer.jpeg";
+import powerStationImage from "./assets/investments/power-station.jpeg";
+import solarKitImage from "./assets/investments/solar-home-kit.jpeg";
 
 type Person = {
   id: number;
