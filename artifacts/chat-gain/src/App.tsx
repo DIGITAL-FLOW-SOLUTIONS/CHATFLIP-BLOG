@@ -565,7 +565,7 @@ function Voices() {
             <h2>
               <i /> LIVE FOREIGNERS ONLINE
             </h2>
-            <p>TAP A PROFILE TO BOOK YOUR CHAT</p>
+            <p>TAP ANY PROFILE TO START A PAID CHAT NOW</p>
           </div>
         </div>
         <div className="reference-grid">
