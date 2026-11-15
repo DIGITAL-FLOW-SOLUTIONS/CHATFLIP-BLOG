@@ -1,0 +1,1036 @@
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  ArrowRight,
+  Check,
+  ChevronDown,
+  MessageSquare,
+  Moon,
+  Sun,
+  X,
+} from "lucide-react";
+import solarPumpImage from "@assets/inv4_1787308184431.jpeg";
+import pressureWasherImage from "@assets/inv1_1787308184432.jpeg";
+import powerStationImage from "@assets/inv2_1787308184432.jpeg";
+import solarKitImage from "@assets/inv3_1787308184433.jpeg";
+
+type Person = {
+  id: number;
+  name: string;
+  age: number;
+  country: string;
+  flag: string;
+  photo: string;
+};
+
+type InvestmentPlan = {
+  id: number;
+  name: string;
+  image: string;
+  deposit: string;
+  dailyProfit: string;
+  totalDays: string;
+  totalProfit: string;
+};
+
+const people: Person[] = [
+  {
+    id: 1,
+    name: "Alira Kone",
+    age: 34,
+    country: "SENEGAL",
+    flag: "🇸🇳",
+    photo: "/profiles/alira-kone.jpg",
+  },
+  {
+    id: 2,
+    name: "Tavian Marek",
+    age: 41,
+    country: "CROATIA",
+    flag: "🇭🇷",
+    photo: "/profiles/tavian-marek.jpg",
+  },
+  {
+    id: 3,
+    name: "Sora Min",
+    age: 30,
+    country: "JAPAN",
+    flag: "🇯🇵",
+    photo: "/profiles/sora-min.jpg",
+  },
+  {
+    id: 4,
+    name: "Devin Adebayo",
+    age: 38,
+    country: "NIGERIA",
+    flag: "🇳🇬",
+    photo: "/profiles/devin-adebayo.jpg",
+  },
+  {
+    id: 5,
+    name: "Maelle Rovira",
+    age: 36,
+    country: "SPAIN",
+    flag: "🇪🇸",
+    photo: "/profiles/maelle-rovira.jpg",
+  },
+  {
+    id: 6,
+    name: "Oren Kimani",
+    age: 43,
+    country: "TANZANIA",
+    flag: "🇹🇿",
+    photo: "/profiles/oren-kimani.jpg",
+  },
+  {
+    id: 7,
+    name: "Amara Idrissi",
+    age: 32,
+    country: "MOROCCO",
+    flag: "🇲🇦",
+    photo: "/profiles/amara-idrissi.jpg",
+  },
+  {
+    id: 8,
+    name: "Enzo Mabaso",
+    age: 39,
+    country: "SOUTH AFRICA",
+    flag: "🇿🇦",
+    photo: "/profiles/enzo-mabaso.jpg",
+  },
+  {
+    id: 9,
+    name: "Liora Haddad",
+    age: 35,
+    country: "LEBANON",
+    flag: "🇱🇧",
+    photo: "/profiles/liora-haddad.jpg",
+  },
+  {
+    id: 10,
+    name: "Rohan Nwosu",
+    age: 42,
+    country: "INDIA",
+    flag: "🇮🇳",
+    photo: "/profiles/rohan-nwosu.jpg",
+  },
+];
+
+const payouts = [
+  "LINDA W. UGX 25,000 (6m ago)",
+  "NAOMI S. UGX 72,000 (30s ago)",
+  "NAOMI S. UGX 105,000 (just now)",
+  "CYNTHIA R. UGX 72,000 (just now)",
+  "SARAH M. UGX 55,000 (30s ago)",
+  "LINDA W. UGX 210,000 (5m ago)",
+  "SARAH M. UGX 110,000 (just now)",
+];
+
+type WithdrawalMessage = {
+  name: string;
+  initials: string;
+  amount: string;
+  method: string;
+  tone: string;
+};
+
+const withdrawalMessages: WithdrawalMessage[] = [
+  { name: "Kelvin T.", initials: "KT", amount: "UGX 120,000", method: "Mobile Money", tone: "orange" },
+  { name: "Amina W.", initials: "AW", amount: "UGX 85,000", method: "Mobile Money", tone: "teal" },
+  { name: "Brian K.", initials: "BK", amount: "KES 15,200", method: "Airtel Money", tone: "blue" },
+  { name: "Joy N.", initials: "JN", amount: "UGX 67,500", method: "Mobile Money", tone: "red" },
+  { name: "Mercy A.", initials: "MA", amount: "UGX 210,000", method: "Mobile Money", tone: "green" },
+  { name: "Dennis O.", initials: "DO", amount: "UGX 98,000", method: "Airtel Money", tone: "orange" },
+  { name: "Faith M.", initials: "FM", amount: "KES 18,400", method: "M-Pesa", tone: "pink" },
+  { name: "Samuel R.", initials: "SR", amount: "UGX 72,000", method: "Mobile Money", tone: "blue" },
+  { name: "Lydia W.", initials: "LW", amount: "UGX 136,000", method: "Mobile Money", tone: "teal" },
+  { name: "Collins J.", initials: "CJ", amount: "UGX 250,000", method: "Mobile Money", tone: "red" },
+  { name: "Esther K.", initials: "EK", amount: "KES 11,500", method: "Airtel Money", tone: "green" },
+  { name: "Peter M.", initials: "PM", amount: "UGX 168,000", method: "Mobile Money", tone: "orange" },
+  { name: "Naomi S.", initials: "NS", amount: "UGX 100,000", method: "Mobile Money", tone: "pink" },
+  { name: "Victor O.", initials: "VO", amount: "KES 19,250", method: "M-Pesa", tone: "blue" },
+  { name: "Hannah L.", initials: "HL", amount: "UGX 59,000", method: "Airtel Money", tone: "teal" },
+  { name: "George W.", initials: "GW", amount: "UGX 143,000", method: "Mobile Money", tone: "red" },
+  { name: "Ruth C.", initials: "RC", amount: "UGX 221,000", method: "Mobile Money", tone: "green" },
+  { name: "Allan P.", initials: "AP", amount: "KES 9,250", method: "M-Pesa", tone: "orange" },
+];
+
+const investmentPlans: InvestmentPlan[] = [
+  {
+    id: 1,
+    name: "SOLAR WATER PUMP",
+    image: solarPumpImage,
+    deposit: "UGX 20,000",
+    dailyProfit: "UGX 5,500",
+    totalDays: "100",
+    totalProfit: "UGX 550,000",
+  },
+  {
+    id: 2,
+    name: "POWER WASHER",
+    image: pressureWasherImage,
+    deposit: "UGX 38,000",
+    dailyProfit: "UGX 8,000",
+    totalDays: "120",
+    totalProfit: "UGX 960,000",
+  },
+  {
+    id: 3,
+    name: "PORTABLE POWER STATION",
+    image: powerStationImage,
+    deposit: "UGX 80,000",
+    dailyProfit: "UGX 16,000",
+    totalDays: "120",
+    totalProfit: "UGX 1,920,000",
+  },
+  {
+    id: 4,
+    name: "SOLAR HOME KIT",
+    image: solarKitImage,
+    deposit: "UGX 150,000",
+    dailyProfit: "UGX 45,000",
+    totalDays: "60",
+    totalProfit: "UGX 2,700,000",
+  },
+];
+
+const faqs = [
+  [
+    "WHAT IS MALIGAIN CHAT?",
+    "MALIGAIN CHAT helps you earn by chatting with foreigners. Choose the conversations you enjoy, spend time with people around the world, and get paid for your approved chat time.",
+  ],
+  [
+    "HOW DO I EARN MONEY?",
+    "Browse the live room, choose a shared interest, and tap Start paid chat. You can meet people from other countries while earning from the time you spend talking.",
+  ],
+  [
+    "IS THERE A REGISTRATION FEE?",
+    "No. Creating your profile and joining is free. Once you are approved, you can earn when foreigners book and complete chats with you.",
+  ],
+  [
+    "HOW DO I GET PAID?",
+    "Payouts are processed through mobile money and other verified gateways. You can track the time you spend and your earnings inside the platform.",
+  ],
+  [
+    "IS MALIGAIN CHAT LEGITIMATE?",
+    "You stay in control at every step. Use our report tools, protect your personal information, and leave any conversation that does not feel right.",
+  ],
+  [
+    "WHEN CAN I WITHDRAW MY EARNINGS?",
+    "Create your profile, choose your languages and topics, set when you are available, and start accepting paid chats with foreigners who want to connect.",
+  ],
+];
+
+function scrollToId(id: string) {
+  document
+    .getElementById(id)
+    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+const redirectLink = import.meta.env.REDIRECT_LINK;
+const supportLink = import.meta.env.SUPPORT_LINK;
+
+function redirectToRegistration() {
+  window.location.assign(redirectLink);
+}
+
+function openSupportChat() {
+  window.location.assign(supportLink);
+}
+
+function useReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }),
+      { threshold: 0.08 },
+    );
+    document
+      .querySelectorAll<HTMLElement>(".reveal")
+      .forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+}
+
+function RegisterButton({ className = "" }: { className?: string }) {
+  return (
+    <button
+      className={`reference-button ${className}`}
+      type="button"
+      onClick={redirectToRegistration}
+      data-testid="button-register"
+    >
+      {"REGISTER NOW"} <ArrowRight size={14} />
+    </button>
+  );
+}
+
+function Header({
+  dark,
+  onTheme,
+  swahili,
+  onLanguage,
+}: {
+  dark: boolean;
+  onTheme: () => void;
+  swahili: boolean;
+  onLanguage: () => void;
+}) {
+  return (
+    <header>
+      <nav className="reference-nav">
+        <div className="reference-nav-inner">
+          <button
+            className="reference-brand"
+            type="button"
+            onClick={() => scrollToId("top")}
+            data-testid="button-brand"
+          >
+            <span className="reference-mark">c</span>
+            <strong>CHAT FLIP</strong>
+          </button>
+          <div className="reference-links">
+            <a href="#top">HOME</a>
+            <a href="#voices">EARNINGS</a>
+            <a href="#investments">INVESTMENTS</a>
+            <a href="#how-it-works">GUIDE</a>
+          </div>
+          <div className="reference-actions">
+            <button
+              className="language-button"
+              type="button"
+              onClick={onLanguage}
+              data-testid="button-language"
+            >
+              {swahili ? "EN" : "SW"}
+            </button>
+            <button
+              className="round-button"
+              type="button"
+              onClick={onTheme}
+              aria-label="Toggle dark mode"
+              data-testid="button-theme"
+            >
+              {dark ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <RegisterButton />
+          </div>
+        </div>
+      </nav>
+      <div className="payout-strip" aria-label="Recent payout activity">
+        <div className="payout-track">
+          {[...payouts, ...payouts].map((payout, index) => (
+            <span key={`${payout}-${index}`}>{payout}</span>
+          ))}
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function WithdrawalFeed() {
+  const [message, setMessage] = useState<WithdrawalMessage | null>(null);
+  const [visible, setVisible] = useState(false);
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    let showTimer: number;
+    let hideTimer: number;
+    let nextTimer: number;
+
+    const showNext = () => {
+      setMessage(withdrawalMessages[indexRef.current]);
+      setVisible(true);
+      hideTimer = window.setTimeout(() => {
+        setVisible(false);
+        nextTimer = window.setTimeout(() => {
+          indexRef.current = (indexRef.current + 1) % withdrawalMessages.length;
+          showNext();
+        }, 1900);
+      }, 5600);
+    };
+
+    showTimer = window.setTimeout(showNext, 2200);
+    return () => {
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+      window.clearTimeout(nextTimer);
+    };
+  }, []);
+
+  if (!message) return null;
+
+  return (
+    <aside
+      className={`withdrawal-feed ${visible ? "is-visible" : ""}`}
+      aria-live="polite"
+      aria-label="Recent withdrawals"
+    >
+      <div className={`withdrawal-avatar withdrawal-avatar-${message.tone}`}>
+        {message.initials}
+      </div>
+      <div className="withdrawal-copy">
+        <strong>{message.name}</strong>
+        <span>
+          Withdrew <b>{message.amount}</b> via
+          <br />
+          {message.method}
+        </span>
+      </div>
+      <span className="withdrawal-check" aria-hidden="true">✓</span>
+    </aside>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="reference-hero" id="top">
+      <div className="hero-shape hero-shape-one" />
+      <div className="hero-shape hero-shape-two" />
+      <div className="reference-container hero-content reveal">
+        <h1>
+          MALIGAIN CHAT
+          <br />
+          <span> Chat Online.</span>
+        </h1>
+        <p>
+          MALIGAIN CHAT lets you earn by chatting with foreigners who want to
+          connect, practice, and share a little time. Turn your conversation
+          skills into flexible income.
+        </p>
+        <div className="hero-buttons">
+          <button
+            className="reference-button"
+            type="button"
+            onClick={redirectToRegistration}
+            data-testid="button-hero-chat"
+          >
+            CHAT NOW
+          </button>
+          <RegisterButton />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProfileModal({
+  person,
+  onClose,
+}: {
+  person: Person;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="modal-backdrop"
+      onMouseDown={(event) => event.target === event.currentTarget && onClose()}
+    >
+      <div
+        className="chat-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="chat-modal-title"
+      >
+        <button
+          className="modal-close"
+          type="button"
+          onClick={onClose}
+          aria-label="Close profile"
+        >
+          <X size={17} />
+        </button>
+        <img src={person.photo} alt="" />
+        <span className="modal-kicker">ACTIVE NOW · {person.country}</span>
+        <h2 id="chat-modal-title">Start a chat with {person.name}</h2>
+        <p>
+          {person.name} is ready to talk. Start a friendly conversation and make
+          the time count.
+        </p>
+        <button
+          className="reference-button"
+          type="button"
+          onClick={redirectToRegistration}
+          data-testid="button-modal-chat"
+        >
+          CHAT NOW <ArrowRight size={14} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function PersonCard({
+  person,
+  onSelect,
+  isTyping,
+}: {
+  person: Person;
+  onSelect: (person: Person) => void;
+  isTyping: boolean;
+}) {
+  return (
+    <article className="reference-person-card reveal">
+      <div className="profile-image-wrap">
+        <img src={person.photo} alt={`Portrait of ${person.name}`} />
+        <i aria-label="Online" />
+      </div>
+      <div className="profile-name">
+        <h3>{person.name}</h3>
+        <small>{person.age}y</small>
+        <p>
+          <span className="profile-flag">{person.flag}</span>
+          <span>{person.country}</span>
+        </p>
+      </div>
+      <div className="profile-actions-column">
+        <div className="profile-meta">
+          <span
+            className={isTyping ? "typing-status" : ""}
+            aria-label={isTyping ? "Typing" : "Looking to talk"}
+          >
+            {isTyping ? (
+              <>
+                <i aria-hidden="true" />
+                <i aria-hidden="true" />
+                <i aria-hidden="true" /> TYPING...
+              </>
+            ) : (
+              <>
+                <i aria-hidden="true" /> LOOKING TO TALK
+              </>
+            )}
+          </span>
+        </div>
+        <div className="profile-actions">
+          <button
+            className="card-chat"
+            type="button"
+            onClick={redirectToRegistration}
+            data-testid={`button-chat-${person.id}`}
+          >
+            Book Chat
+          </button>
+          <button
+            className="icon-chat"
+            type="button"
+            aria-label={`Message ${person.name}`}
+            onClick={() => onSelect(person)}
+          >
+            <MessageSquare size={17} />
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function Voices() {
+  const [selected, setSelected] = useState<Person | null>(null);
+  const [typingIds, setTypingIds] = useState<number[]>([]);
+  useEffect(() => {
+    let typingTimer: number;
+    const showNextTyping = () => {
+      typingTimer = window.setTimeout(
+        () => {
+          const typingCount = 4 + Math.floor(Math.random() * 2);
+          const nextTypingIds = [...people]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, typingCount)
+            .map((person) => person.id);
+          setTypingIds(nextTypingIds);
+          typingTimer = window.setTimeout(
+            () => {
+              setTypingIds([]);
+              showNextTyping();
+            },
+            1800 + Math.random() * 2200,
+          );
+        },
+        3200 + Math.random() * 4800,
+      );
+    };
+    showNextTyping();
+    return () => window.clearTimeout(typingTimer);
+  }, []);
+  return (
+    <section className="voices-reference" id="voices">
+      <div className="reference-container">
+        <div className="live-heading reveal">
+          <div>
+            <h2>
+              <i /> LIVE FOREIGNERS ONLINE
+            </h2>
+            <p>TAP ANY PROFILE TO START A PAID CHAT NOW</p>
+          </div>
+        </div>
+        <div className="reference-grid">
+          {people
+            .map((person) => (
+            <PersonCard
+              key={person.id}
+              person={person}
+              isTyping={typingIds.includes(person.id)}
+              onSelect={setSelected}
+            />
+            ))}
+          <SupportCard />
+        </div>
+        <button
+          className="more-button reveal"
+          type="button"
+          onClick={() => scrollToId("join")}
+          data-testid="button-more-chats"
+        >
+          SHOW MORE <ArrowRight size={14} />
+        </button>
+      </div>
+      {selected && (
+        <ProfileModal person={selected} onClose={() => setSelected(null)} />
+      )}
+    </section>
+  );
+}
+
+function InvestmentCard({ plan }: { plan: InvestmentPlan }) {
+  return (
+    <article className="investment-card reveal">
+      <div className="investment-image-wrap">
+        <img src={plan.image} alt={plan.name} />
+      </div>
+      <div className="investment-card-content">
+        <div className="investment-card-heading">
+          <div>
+            <span className="investment-kicker">
+              PRODUCT PLAN {String(plan.id).padStart(2, "0")}
+            </span>
+            <h3>{plan.name}</h3>
+          </div>
+          <span className="investment-status">
+            <i /> AVAILABLE
+          </span>
+        </div>
+        <div className="investment-details">
+          <div>
+            <span>DEPOSIT</span>
+            <strong>{plan.deposit}</strong>
+          </div>
+          <div>
+            <span>DAILY PROFIT</span>
+            <strong className="profit-value">{plan.dailyProfit}</strong>
+          </div>
+          <div>
+            <span>TOTAL DAYS</span>
+            <strong>{plan.totalDays}</strong>
+          </div>
+          <div>
+            <span>TOTAL PROFIT</span>
+            <strong className="profit-value">{plan.totalProfit}</strong>
+          </div>
+        </div>
+        <button
+          className="investment-action"
+          type="button"
+          onClick={redirectToRegistration}
+          data-testid={`button-invest-${plan.id}`}
+        >
+          CHOOSE PLAN <ArrowRight size={14} />
+        </button>
+      </div>
+    </article>
+  );
+}
+
+function Investments() {
+  return (
+    <section className="investments-reference" id="investments">
+      <div className="reference-container">
+        <div className="investment-heading reveal">
+          <div>
+            <span className="section-label">BUILD A BRIGHTER TOMORROW</span>
+            <h2>
+              SMART <span>PRODUCT PLANS</span>
+            </h2>
+            <p>
+              Back practical energy tools that make everyday work easier. Pick a
+              product, start small, and grow with a clear plan.
+            </p>
+          </div>
+          <span className="investment-note">REAL PRODUCTS · REAL IMPACT</span>
+        </div>
+        <div className="investment-grid">
+          {investmentPlans.map((plan) => (
+            <InvestmentCard key={plan.id} plan={plan} />
+          ))}
+        </div>
+        <div className="investment-actions reveal">
+          <button
+            className="investment-secondary"
+            type="button"
+            onClick={redirectToRegistration}
+            data-testid="button-invest-chat"
+          >
+            ASK A QUESTION
+          </button>
+          <button
+            className="reference-button investment-primary"
+            type="button"
+            onClick={redirectToRegistration}
+            data-testid="button-invest-now"
+          >
+            START A PLAN <ArrowRight size={14} />
+          </button>
+          <RegisterButton className="investment-register" />
+          <button
+            className="investment-secondary investment-join"
+            type="button"
+            onClick={redirectToRegistration}
+            data-testid="button-invest-join"
+          >
+            SEE ALL OPTIONS
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SupportCard() {
+  return (
+    <article className="support-card reveal">
+      <span>CHAT SUPPORT</span>
+      <h3>JOIN TRAINING CHANNEL</h3>
+      <p>Get training, updates &amp; connect with other earners.</p>
+      <button
+        type="button"
+        onClick={openSupportChat}
+        data-testid="button-support"
+      >
+        OPEN SUPPORT CHAT
+      </button>
+    </article>
+  );
+}
+
+function Metrics() {
+  return (
+    <section className="metrics-reference">
+      <div className="reference-container metrics-row">
+        <div>
+          <strong>80,443</strong>
+          <span>PAID CHATS</span>
+        </div>
+        <div>
+          <strong>UGX 1,285,368</strong>
+          <span>TOTAL PAID OUT</span>
+        </div>
+        <div className="metric-highlight">
+          <strong>1,782</strong>
+          <span>ACTIVE HOSTS</span>
+        </div>
+        <div>
+          <strong>
+            4.9<em>★</em>
+          </strong>
+          <span>AVERAGE RATING</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const features = [
+    [
+      "MEANINGFUL CONVERSATIONS",
+      "Enter relaxed one-to-one chats with people abroad who want a friendly voice, a fresh perspective, or a chance to practice.",
+    ],
+    [
+      "TURN TIME INTO INCOME",
+      "Build your earning rhythm around the hours that suit you. Every approved session turns your attention and time into progress.",
+    ],
+    [
+      "A WORLDWIDE COMMUNITY",
+      "Meet curious people from different cultures, exchange stories, and create genuine connections from wherever you are.",
+    ],
+    [
+      "COMFORTABLE BOUNDARIES",
+      "Keep conversations respectful and on your terms with clear community rules, reporting tools, and control over your availability.",
+    ],
+  ];
+  return (
+    <section className="features-reference" id="how-it-works">
+      <div className="reference-container">
+        <div className="section-title centered reveal">
+          <h2>
+            HOW IT <span>WORKS</span>
+          </h2>
+          <p>
+            Discover conversations that fit your interests, show up when it
+            works for you, and make every positive interaction count.
+          </p>
+        </div>
+        <div className="features-layout">
+          <div className="feature-intro reveal">
+              <span>YOUR TIME, YOUR TERMS</span>
+            <h3>
+                Turn real
+              <br />
+                <em>connection</em>
+              <br />
+                into value.
+            </h3>
+            <RegisterButton />
+          </div>
+          <div className="feature-cards">
+            {features.map(([title, copy], index) => (
+              <article className="feature-card reveal" key={title}>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Join() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (email.trim()) setSubmitted(true);
+  };
+  return (
+    <section className="join-reference" id="join">
+      <div className="reference-container">
+        <div className="join-panel reveal">
+          <div>
+            <span className="section-label">YOUR NEXT CHAPTER STARTS HERE</span>
+            <h2>
+              HOW TO <span>JOIN</span>
+            </h2>
+            <p>
+              Getting started is simple. Create your space, tell us what you
+              enjoy talking about, and open the door to flexible online
+              earnings.
+            </p>
+          </div>
+          <div className="join-steps">
+            <b>
+              <i>1</i> Build your account
+            </b>
+            <b>
+              <i>2</i> Set your interests
+            </b>
+            <b>
+              <i>3</i> Meet and earn
+            </b>
+          </div>
+          <div className="join-buttons">
+            <RegisterButton />
+            <button
+              className="reference-button button-green"
+              type="button"
+              onClick={redirectToRegistration}
+              data-testid="button-join-chat"
+            >
+              START EARNING
+            </button>
+          </div>
+        </div>
+        <form className="join-email reveal" onSubmit={submit}>
+          <label htmlFor="join-email-input">
+            Get practical earning tips and fresh conversation opportunities
+          </label>
+          <div>
+            <input
+              id="join-email-input"
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+            <button type="submit" aria-label="Join the earning tips list">
+              <ArrowRight size={16} />
+            </button>
+          </div>
+          {submitted && (
+            <p className="form-success">
+              <Check size={14} /> You are on the list.
+            </p>
+          )}
+        </form>
+      </div>
+    </section>
+  );
+}
+
+function Stories() {
+  const stories = [
+    [
+      "ALICE · UK",
+      "“I joined to meet people outside my everyday circle. Now my evening conversations help me cover a few important monthly expenses too.”",
+    ],
+    [
+      "DANIEL · MEXICO",
+      "“The best part is the variety. I can encourage someone through a tough day, learn about another culture, and earn from time I already had.”",
+    ],
+    [
+      "MARIE · FRANCE",
+      "“I began with a few open hours each week. The routine grew naturally, and the extra income has given me more breathing room.”",
+    ],
+  ];
+  return (
+    <section className="stories-reference" id="stories">
+      <div className="reference-container">
+        <div className="section-title centered reveal">
+          <h2>
+            SUCCESS <span>STORIES</span>
+          </h2>
+          <p>
+            From first introductions to regular conversations, hosts are
+            building confidence, community, and flexible income one chat at a
+            time.
+          </p>
+        </div>
+        <div className="story-grid">
+          {stories.map(([name, quote], index) => (
+            <article className="story-card reveal" key={name}>
+              <div className={`story-photo story-photo-${index}`} />
+              <b>{name}</b>
+              <span>✓ VERIFIED HOST</span>
+              <p>{quote}</p>
+              <small>
+                UGX {index === 0 ? "8,400" : index === 1 ? "12,500" : "6,800"}{" "}
+                PAYOUT
+              </small>
+            </article>
+          ))}
+        </div>
+        <RegisterButton />
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const [open, setOpen] = useState(0);
+  return (
+    <section className="faq-reference" id="faq">
+      <div className="reference-container faq-layout">
+        <div className="section-title reveal">
+          <h2>
+            FREQUENTLY <span>ASKED</span>
+          </h2>
+          <p>
+            Learn how paid chats work, how you earn, and how we keep
+            conversations safe.
+          </p>
+        </div>
+        <div className="faq-list">
+          {faqs.map(([question, answer], index) => (
+            <div
+              className={`faq-item reveal ${open === index ? "open" : ""}`}
+              key={question}
+            >
+              <button
+                type="button"
+                onClick={() => setOpen(open === index ? -1 : index)}
+                aria-expanded={open === index}
+                data-testid={`button-faq-${index}`}
+              >
+                <span>{question}</span>
+                <ChevronDown size={15} />
+              </button>
+              {open === index && <p>{answer}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="reference-footer">
+      <div className="reference-container footer-layout">
+        <div className="footer-brand">
+          <button
+            className="reference-brand"
+            type="button"
+            onClick={() => scrollToId("top")}
+          >
+            <span className="reference-mark">c</span>
+            <strong>CHAT FLIP</strong>
+          </button>
+          <p>
+            Meet people, share perspective,
+            <br />
+            and make your online time matter.
+          </p>
+          <span>● A COMMUNITY BUILT AROUND CONNECTION</span>
+        </div>
+        <div className="footer-cta">
+          <span>READY WHEN YOU ARE</span>
+          <h2>
+            Your next
+            <br />
+            <em>conversation</em>
+            <br />
+            starts here.
+          </h2>
+          <RegisterButton />
+        </div>
+      </div>
+      <div className="reference-container footer-bottom">
+        <span>© 2026 CHAT FLIP</span>
+        <div>
+          <a href="#top">BACK TO TOP</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  const [dark, setDark] = useState(false);
+  const [swahili, setSwahili] = useState(false);
+  useReveal();
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
+  return (
+    <div className="site-reference">
+      <Header
+        dark={dark}
+        onTheme={() => setDark((value) => !value)}
+        swahili={swahili}
+        onLanguage={() => setSwahili((value) => !value)}
+      />
+      <WithdrawalFeed />
+      <main>
+        <Hero />
+        <Voices />
+        <Investments />
+        <Metrics />
+        <HowItWorks />
+        <Join />
+        <Stories />
+        <FAQ />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maligain.org/sitemap.xml
+
+# Make the public homepage available to search and answer-focused crawlers.
+User-agent: Googlebot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
