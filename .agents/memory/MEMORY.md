@@ -1,0 +1,1 @@
+- [Vercel deployment target](vercel-deployment-target.md) — deploy this site's web app from the chat-gain artifact and keep its Vercel config there.
