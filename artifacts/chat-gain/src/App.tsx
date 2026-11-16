@@ -445,10 +445,20 @@ const redirectLink = import.meta.env.REDIRECT_LINK;
 const supportLink = import.meta.env.SUPPORT_LINK;
 
 function redirectToRegistration() {
+  if (!redirectLink) {
+    console.error("REDIRECT_LINK is missing from the Vite environment.");
+    return;
+  }
+
   window.location.assign(redirectLink);
 }
 
 function openSupportChat() {
+  if (!supportLink) {
+    console.error("SUPPORT_LINK is missing from the Vite environment.");
+    return;
+  }
+
   window.location.assign(supportLink);
 }
 

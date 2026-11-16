@@ -29,6 +29,14 @@ if (!basePath) {
 
 export default defineConfig({
   base: basePath,
+  define: {
+    "import.meta.env.REDIRECT_LINK": JSON.stringify(
+      process.env.REDIRECT_LINK ?? "",
+    ),
+    "import.meta.env.SUPPORT_LINK": JSON.stringify(
+      process.env.SUPPORT_LINK ?? "",
+    ),
+  },
   plugins: [
     react(),
     tailwindcss(),
