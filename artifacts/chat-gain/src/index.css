@@ -492,6 +492,26 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
   height: 56px;
   border-radius: 13px;
 }
+.voices-reference .profile-initials {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  color: #fff;
+  font: 900 17px var(--display);
+}
+.chat-modal .profile-modal-initials {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  font-size: 21px;
+}
+.voices-reference .profile-initials-1 { background: linear-gradient(135deg, #55407f, #aa8ce0); }
+.voices-reference .profile-initials-2 { background: linear-gradient(135deg, #087a80, #64c6b8); }
+.voices-reference .profile-initials-3 { background: linear-gradient(135deg, #a94e3e, #eea37c); }
+.voices-reference .profile-initials-4 { background: linear-gradient(135deg, #315f87, #78a9d3); }
+.voices-reference .profile-initials-5 { background: linear-gradient(135deg, #94395d, #dc7da0); }
 .voices-reference .profile-image-wrap i {
   right: -2px;
   bottom: -1px;
@@ -652,7 +672,8 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
     padding-inline: 4px;
   }
   .voices-reference .profile-image-wrap,
-  .voices-reference .profile-image-wrap img {
+  .voices-reference .profile-image-wrap img,
+  .voices-reference .profile-initials {
     width: 50px;
     height: 54px;
   }

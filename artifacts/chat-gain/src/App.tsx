@@ -24,7 +24,7 @@ type Person = {
   age: number;
   country: string;
   flag: string;
-  photo: string;
+  photo?: string;
   greeting: string;
 };
 
@@ -131,7 +131,180 @@ const people: Person[] = [
     photo: "/profiles/rohan-nwosu.jpg",
     greeting: "Namaste! 🙌",
   },
+  {
+    id: 11,
+    name: "Maya Oliveira",
+    age: 31,
+    country: "BRAZIL",
+    flag: "🇧🇷",
+    greeting: "Oi! 😊",
+  },
+  {
+    id: 12,
+    name: "Luka Petrovic",
+    age: 37,
+    country: "SERBIA",
+    flag: "🇷🇸",
+    greeting: "Zdravo! 👋",
+  },
+  {
+    id: 13,
+    name: "Nia Mensah",
+    age: 29,
+    country: "GHANA",
+    flag: "🇬🇭",
+    greeting: "Akwaaba! 😊",
+  },
+  {
+    id: 14,
+    name: "Lucia Fernandez",
+    age: 33,
+    country: "ARGENTINA",
+    flag: "🇦🇷",
+    greeting: "¡Hola! ☀️",
+  },
+  {
+    id: 15,
+    name: "Rafael Costa",
+    age: 35,
+    country: "PORTUGAL",
+    flag: "🇵🇹",
+    greeting: "Olá! 🌞",
+  },
+  {
+    id: 16,
+    name: "Mei Tan",
+    age: 28,
+    country: "SINGAPORE",
+    flag: "🇸🇬",
+    greeting: "Hello! ✨",
+  },
+  {
+    id: 17,
+    name: "Leila Haddad",
+    age: 34,
+    country: "JORDAN",
+    flag: "🇯🇴",
+    greeting: "Marhaba! 😊",
+  },
+  {
+    id: 18,
+    name: "Kwame Boateng",
+    age: 40,
+    country: "GHANA",
+    flag: "🇬🇭",
+    greeting: "Hey there! 👋",
+  },
+  {
+    id: 19,
+    name: "Hana Novak",
+    age: 30,
+    country: "CZECHIA",
+    flag: "🇨🇿",
+    greeting: "Ahoj! 😊",
+  },
+  {
+    id: 20,
+    name: "Mateo Garcia",
+    age: 36,
+    country: "COLOMBIA",
+    flag: "🇨🇴",
+    greeting: "¡Buenas! 👋",
+  },
+  {
+    id: 21,
+    name: "Aisha Hassan",
+    age: 32,
+    country: "EGYPT",
+    flag: "🇪🇬",
+    greeting: "Ahlan! 🌸",
+  },
+  {
+    id: 22,
+    name: "Daniel Pereira",
+    age: 39,
+    country: "BRAZIL",
+    flag: "🇧🇷",
+    greeting: "Tudo bem? 😊",
+  },
+  {
+    id: 23,
+    name: "Sofia Rossi",
+    age: 29,
+    country: "ITALY",
+    flag: "🇮🇹",
+    greeting: "Ciao! ☀️",
+  },
+  {
+    id: 24,
+    name: "Noor Rahman",
+    age: 31,
+    country: "BANGLADESH",
+    flag: "🇧🇩",
+    greeting: "Hello! 🌿",
+  },
+  {
+    id: 25,
+    name: "Ethan Walsh",
+    age: 42,
+    country: "IRELAND",
+    flag: "🇮🇪",
+    greeting: "How are you? ☘️",
+  },
+  {
+    id: 26,
+    name: "Fatima Zahra",
+    age: 34,
+    country: "ALGERIA",
+    flag: "🇩🇿",
+    greeting: "Salam! 😊",
+  },
+  {
+    id: 27,
+    name: "Carlos Santos",
+    age: 38,
+    country: "MEXICO",
+    flag: "🇲🇽",
+    greeting: "¡Qué tal! 👋",
+  },
+  {
+    id: 28,
+    name: "Priya Nair",
+    age: 33,
+    country: "INDIA",
+    flag: "🇮🇳",
+    greeting: "Namaste! 🙌",
+  },
+  {
+    id: 29,
+    name: "Sara Lind",
+    age: 28,
+    country: "SWEDEN",
+    flag: "🇸🇪",
+    greeting: "Hej! 😊",
+  },
+  {
+    id: 30,
+    name: "Malik Thompson",
+    age: 41,
+    country: "CANADA",
+    flag: "🇨🇦",
+    greeting: "Hey there! 👋",
+  },
 ];
+
+function getProfileInitials(person: Person) {
+  return person.name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2);
+}
+
+function getProfileInitialsClass(person: Person) {
+  const colorIndex = ((person.id - 11) % 5) + 1;
+  return `profile-initials profile-initials-${colorIndex}`;
+}
 
 const payouts: {
   name: string;
@@ -468,7 +641,16 @@ function ProfileModal({
         >
           <X size={17} />
         </button>
-        <img src={person.photo} alt="" />
+        {person.photo ? (
+          <img src={person.photo} alt="" />
+        ) : (
+          <span
+            className={`${getProfileInitialsClass(person)} profile-modal-initials`}
+            aria-hidden="true"
+          >
+            {getProfileInitials(person)}
+          </span>
+        )}
         <span className="modal-kicker">ACTIVE NOW · {person.country}</span>
         <h2 id="chat-modal-title">Start a chat with {person.name}</h2>
         <p>
@@ -503,7 +685,16 @@ function PersonCard({
   return (
     <article className="reference-person-card reveal">
       <div className="profile-image-wrap">
-        <img src={person.photo} alt={`Portrait of ${person.name}`} />
+        {person.photo ? (
+          <img src={person.photo} alt={`Portrait of ${person.name}`} />
+        ) : (
+          <span
+            className={getProfileInitialsClass(person)}
+            aria-hidden="true"
+          >
+            {getProfileInitials(person)}
+          </span>
+        )}
         <i aria-label="Online" />
       </div>
       <div className="profile-name">
