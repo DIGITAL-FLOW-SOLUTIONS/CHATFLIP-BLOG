@@ -137,6 +137,7 @@ const people: Person[] = [
     age: 31,
     country: "BRAZIL",
     flag: "🇧🇷",
+    photo: "/profiles/profile-maya-oliveira.jpg",
     greeting: "Oi! 😊",
   },
   {
@@ -145,6 +146,7 @@ const people: Person[] = [
     age: 37,
     country: "SERBIA",
     flag: "🇷🇸",
+    photo: "/profiles/profile-luka-petrovic.jpg",
     greeting: "Zdravo! 👋",
   },
   {
@@ -153,6 +155,7 @@ const people: Person[] = [
     age: 29,
     country: "GHANA",
     flag: "🇬🇭",
+    photo: "/profiles/profile-nia-mensah.jpg",
     greeting: "Akwaaba! 😊",
   },
   {
@@ -161,6 +164,7 @@ const people: Person[] = [
     age: 33,
     country: "ARGENTINA",
     flag: "🇦🇷",
+    photo: "/profiles/profile-lucia-fernandez.jpg",
     greeting: "¡Hola! ☀️",
   },
   {
@@ -169,6 +173,7 @@ const people: Person[] = [
     age: 35,
     country: "PORTUGAL",
     flag: "🇵🇹",
+    photo: "/profiles/profile-rafael-costa.jpg",
     greeting: "Olá! 🌞",
   },
   {
@@ -177,6 +182,7 @@ const people: Person[] = [
     age: 28,
     country: "SINGAPORE",
     flag: "🇸🇬",
+    photo: "/profiles/profile-mei-tan.jpg",
     greeting: "Hello! ✨",
   },
   {
@@ -185,6 +191,7 @@ const people: Person[] = [
     age: 34,
     country: "JORDAN",
     flag: "🇯🇴",
+    photo: "/profiles/profile-leila-haddad.jpg",
     greeting: "Marhaba! 😊",
   },
   {
@@ -193,6 +200,7 @@ const people: Person[] = [
     age: 40,
     country: "GHANA",
     flag: "🇬🇭",
+    photo: "/profiles/profile-kwame-boateng.jpg",
     greeting: "Hey there! 👋",
   },
   {
@@ -201,6 +209,7 @@ const people: Person[] = [
     age: 30,
     country: "CZECHIA",
     flag: "🇨🇿",
+    photo: "/profiles/profile-hana-novak.jpg",
     greeting: "Ahoj! 😊",
   },
   {
@@ -209,6 +218,7 @@ const people: Person[] = [
     age: 36,
     country: "COLOMBIA",
     flag: "🇨🇴",
+    photo: "/profiles/profile-mateo-garcia.jpg",
     greeting: "¡Buenas! 👋",
   },
   {
@@ -217,6 +227,7 @@ const people: Person[] = [
     age: 32,
     country: "EGYPT",
     flag: "🇪🇬",
+    photo: "/profiles/profile-aisha-hassan.jpg",
     greeting: "Ahlan! 🌸",
   },
   {
@@ -225,6 +236,7 @@ const people: Person[] = [
     age: 39,
     country: "BRAZIL",
     flag: "🇧🇷",
+    photo: "/profiles/profile-daniel-pereira.jpg",
     greeting: "Tudo bem? 😊",
   },
   {
@@ -233,6 +245,7 @@ const people: Person[] = [
     age: 29,
     country: "ITALY",
     flag: "🇮🇹",
+    photo: "/profiles/profile-sofia-rossi.jpg",
     greeting: "Ciao! ☀️",
   },
   {
@@ -241,6 +254,7 @@ const people: Person[] = [
     age: 31,
     country: "BANGLADESH",
     flag: "🇧🇩",
+    photo: "/profiles/profile-noor-rahman.jpg",
     greeting: "Hello! 🌿",
   },
   {
@@ -249,6 +263,7 @@ const people: Person[] = [
     age: 42,
     country: "IRELAND",
     flag: "🇮🇪",
+    photo: "/profiles/profile-ethan-walsh.jpg",
     greeting: "How are you? ☘️",
   },
   {
@@ -257,6 +272,7 @@ const people: Person[] = [
     age: 34,
     country: "ALGERIA",
     flag: "🇩🇿",
+    photo: "/profiles/profile-fatima-zahra.jpg",
     greeting: "Salam! 😊",
   },
   {
@@ -265,6 +281,7 @@ const people: Person[] = [
     age: 38,
     country: "MEXICO",
     flag: "🇲🇽",
+    photo: "/profiles/profile-carlos-santos.jpg",
     greeting: "¡Qué tal! 👋",
   },
   {
@@ -273,6 +290,7 @@ const people: Person[] = [
     age: 33,
     country: "INDIA",
     flag: "🇮🇳",
+    photo: "/profiles/profile-priya-nair.jpg",
     greeting: "Namaste! 🙌",
   },
   {
@@ -281,6 +299,7 @@ const people: Person[] = [
     age: 28,
     country: "SWEDEN",
     flag: "🇸🇪",
+    photo: "/profiles/profile-sara-lind.jpg",
     greeting: "Hej! 😊",
   },
   {
@@ -289,6 +308,7 @@ const people: Person[] = [
     age: 41,
     country: "CANADA",
     flag: "🇨🇦",
+    photo: "/profiles/profile-malik-thompson.jpg",
     greeting: "Hey there! 👋",
   },
 ];
