@@ -8,6 +8,11 @@ import {
   Sun,
   X,
 } from "lucide-react";
+import {
+  formatUsdEquivalent,
+  USD_RATE_NOTE,
+  type CurrencyAmount,
+} from "./lib/currency";
 import solarPumpImage from "./assets/investments/solar-water-pump.jpeg";
 import pressureWasherImage from "./assets/investments/pressure-washer.jpeg";
 import powerStationImage from "./assets/investments/power-station.jpeg";
@@ -29,10 +34,10 @@ type InvestmentPlan = {
   id: number;
   name: string;
   image: string;
-  deposit: string;
-  dailyProfit: string;
+  deposit: CurrencyAmount;
+  dailyProfit: CurrencyAmount;
   totalDays: string;
-  totalProfit: string;
+  totalProfit: CurrencyAmount;
 };
 
 const people: Person[] = [
@@ -128,43 +133,47 @@ const people: Person[] = [
   },
 ];
 
-const payouts = [
-  "LINDA W. UGX 25,000 (6m ago)",
-  "NAOMI S. UGX 72,000 (30s ago)",
-  "NAOMI S. UGX 105,000 (just now)",
-  "CYNTHIA R. UGX 72,000 (just now)",
-  "SARAH M. UGX 55,000 (30s ago)",
-  "LINDA W. UGX 210,000 (5m ago)",
-  "SARAH M. UGX 110,000 (just now)",
+const payouts: {
+  name: string;
+  amount: CurrencyAmount;
+  time: string;
+}[] = [
+  { name: "LINDA W.", amount: { value: 25_000, currency: "UGX" }, time: "6m ago" },
+  { name: "NAOMI S.", amount: { value: 72_000, currency: "UGX" }, time: "30s ago" },
+  { name: "NAOMI S.", amount: { value: 105_000, currency: "UGX" }, time: "just now" },
+  { name: "CYNTHIA R.", amount: { value: 72_000, currency: "UGX" }, time: "just now" },
+  { name: "SARAH M.", amount: { value: 55_000, currency: "UGX" }, time: "30s ago" },
+  { name: "LINDA W.", amount: { value: 210_000, currency: "UGX" }, time: "5m ago" },
+  { name: "SARAH M.", amount: { value: 110_000, currency: "UGX" }, time: "just now" },
 ];
 
 type WithdrawalMessage = {
   name: string;
   initials: string;
-  amount: string;
+  amount: CurrencyAmount;
   method: string;
   tone: string;
 };
 
 const withdrawalMessages: WithdrawalMessage[] = [
-  { name: "Kelvin T.", initials: "KT", amount: "UGX 120,000", method: "Mobile Money", tone: "orange" },
-  { name: "Amina W.", initials: "AW", amount: "UGX 85,000", method: "Mobile Money", tone: "teal" },
-  { name: "Brian K.", initials: "BK", amount: "KES 15,200", method: "Airtel Money", tone: "blue" },
-  { name: "Joy N.", initials: "JN", amount: "UGX 67,500", method: "Mobile Money", tone: "red" },
-  { name: "Mercy A.", initials: "MA", amount: "UGX 210,000", method: "Mobile Money", tone: "green" },
-  { name: "Dennis O.", initials: "DO", amount: "UGX 98,000", method: "Airtel Money", tone: "orange" },
-  { name: "Faith M.", initials: "FM", amount: "KES 18,400", method: "M-Pesa", tone: "pink" },
-  { name: "Samuel R.", initials: "SR", amount: "UGX 72,000", method: "Mobile Money", tone: "blue" },
-  { name: "Lydia W.", initials: "LW", amount: "UGX 136,000", method: "Mobile Money", tone: "teal" },
-  { name: "Collins J.", initials: "CJ", amount: "UGX 250,000", method: "Mobile Money", tone: "red" },
-  { name: "Esther K.", initials: "EK", amount: "KES 11,500", method: "Airtel Money", tone: "green" },
-  { name: "Peter M.", initials: "PM", amount: "UGX 168,000", method: "Mobile Money", tone: "orange" },
-  { name: "Naomi S.", initials: "NS", amount: "UGX 100,000", method: "Mobile Money", tone: "pink" },
-  { name: "Victor O.", initials: "VO", amount: "KES 19,250", method: "M-Pesa", tone: "blue" },
-  { name: "Hannah L.", initials: "HL", amount: "UGX 59,000", method: "Airtel Money", tone: "teal" },
-  { name: "George W.", initials: "GW", amount: "UGX 143,000", method: "Mobile Money", tone: "red" },
-  { name: "Ruth C.", initials: "RC", amount: "UGX 221,000", method: "Mobile Money", tone: "green" },
-  { name: "Allan P.", initials: "AP", amount: "KES 9,250", method: "M-Pesa", tone: "orange" },
+  { name: "Kelvin T.", initials: "KT", amount: { value: 120_000, currency: "UGX" }, method: "Mobile Money", tone: "orange" },
+  { name: "Amina W.", initials: "AW", amount: { value: 85_000, currency: "UGX" }, method: "Mobile Money", tone: "teal" },
+  { name: "Brian K.", initials: "BK", amount: { value: 15_200, currency: "KES" }, method: "Airtel Money", tone: "blue" },
+  { name: "Joy N.", initials: "JN", amount: { value: 67_500, currency: "UGX" }, method: "Mobile Money", tone: "red" },
+  { name: "Mercy A.", initials: "MA", amount: { value: 210_000, currency: "UGX" }, method: "Mobile Money", tone: "green" },
+  { name: "Dennis O.", initials: "DO", amount: { value: 98_000, currency: "UGX" }, method: "Airtel Money", tone: "orange" },
+  { name: "Faith M.", initials: "FM", amount: { value: 18_400, currency: "KES" }, method: "M-Pesa", tone: "pink" },
+  { name: "Samuel R.", initials: "SR", amount: { value: 72_000, currency: "UGX" }, method: "Mobile Money", tone: "blue" },
+  { name: "Lydia W.", initials: "LW", amount: { value: 136_000, currency: "UGX" }, method: "Mobile Money", tone: "teal" },
+  { name: "Collins J.", initials: "CJ", amount: { value: 250_000, currency: "UGX" }, method: "Mobile Money", tone: "red" },
+  { name: "Esther K.", initials: "EK", amount: { value: 11_500, currency: "KES" }, method: "Airtel Money", tone: "green" },
+  { name: "Peter M.", initials: "PM", amount: { value: 168_000, currency: "UGX" }, method: "Mobile Money", tone: "orange" },
+  { name: "Naomi S.", initials: "NS", amount: { value: 100_000, currency: "UGX" }, method: "Mobile Money", tone: "pink" },
+  { name: "Victor O.", initials: "VO", amount: { value: 19_250, currency: "KES" }, method: "M-Pesa", tone: "blue" },
+  { name: "Hannah L.", initials: "HL", amount: { value: 59_000, currency: "UGX" }, method: "Airtel Money", tone: "teal" },
+  { name: "George W.", initials: "GW", amount: { value: 143_000, currency: "UGX" }, method: "Mobile Money", tone: "red" },
+  { name: "Ruth C.", initials: "RC", amount: { value: 221_000, currency: "UGX" }, method: "Mobile Money", tone: "green" },
+  { name: "Allan P.", initials: "AP", amount: { value: 9_250, currency: "KES" }, method: "M-Pesa", tone: "orange" },
 ];
 
 const investmentPlans: InvestmentPlan[] = [
@@ -172,37 +181,37 @@ const investmentPlans: InvestmentPlan[] = [
     id: 1,
     name: "SOLAR WATER PUMP",
     image: solarPumpImage,
-    deposit: "UGX 20,000",
-    dailyProfit: "UGX 5,500",
+    deposit: { value: 20_000, currency: "UGX" },
+    dailyProfit: { value: 5_500, currency: "UGX" },
     totalDays: "100",
-    totalProfit: "UGX 550,000",
+    totalProfit: { value: 550_000, currency: "UGX" },
   },
   {
     id: 2,
     name: "POWER WASHER",
     image: pressureWasherImage,
-    deposit: "UGX 38,000",
-    dailyProfit: "UGX 8,000",
+    deposit: { value: 38_000, currency: "UGX" },
+    dailyProfit: { value: 8_000, currency: "UGX" },
     totalDays: "120",
-    totalProfit: "UGX 960,000",
+    totalProfit: { value: 960_000, currency: "UGX" },
   },
   {
     id: 3,
     name: "PORTABLE POWER STATION",
     image: powerStationImage,
-    deposit: "UGX 80,000",
-    dailyProfit: "UGX 16,000",
+    deposit: { value: 80_000, currency: "UGX" },
+    dailyProfit: { value: 16_000, currency: "UGX" },
     totalDays: "120",
-    totalProfit: "UGX 1,920,000",
+    totalProfit: { value: 1_920_000, currency: "UGX" },
   },
   {
     id: 4,
     name: "SOLAR HOME KIT",
     image: solarKitImage,
-    deposit: "UGX 150,000",
-    dailyProfit: "UGX 45,000",
+    deposit: { value: 150_000, currency: "UGX" },
+    dailyProfit: { value: 45_000, currency: "UGX" },
     totalDays: "60",
-    totalProfit: "UGX 2,700,000",
+    totalProfit: { value: 2_700_000, currency: "UGX" },
   },
 ];
 
@@ -337,7 +346,9 @@ function Header({
       <div className="payout-strip" aria-label="Recent payout activity">
         <div className="payout-track">
           {[...payouts, ...payouts].map((payout, index) => (
-            <span key={`${payout}-${index}`}>{payout}</span>
+            <span key={`${payout.name}-${index}`}>
+              {payout.name} {formatUsdEquivalent(payout.amount)} ({payout.time})
+            </span>
           ))}
         </div>
       </div>
@@ -389,7 +400,7 @@ function WithdrawalFeed() {
       <div className="withdrawal-copy">
         <strong>{message.name}</strong>
         <span>
-          Withdrew <b>{message.amount}</b> via
+          Withdrew <b>{formatUsdEquivalent(message.amount)}</b> via
           <br />
           {message.method}
         </span>
@@ -668,11 +679,13 @@ function InvestmentCard({ plan }: { plan: InvestmentPlan }) {
         <div className="investment-details">
           <div>
             <span>DEPOSIT</span>
-            <strong>{plan.deposit}</strong>
+            <strong>{formatUsdEquivalent(plan.deposit)}</strong>
           </div>
           <div>
             <span>DAILY PROFIT</span>
-            <strong className="profit-value">{plan.dailyProfit}</strong>
+            <strong className="profit-value">
+              {formatUsdEquivalent(plan.dailyProfit)}
+            </strong>
           </div>
           <div>
             <span>TOTAL DAYS</span>
@@ -680,7 +693,9 @@ function InvestmentCard({ plan }: { plan: InvestmentPlan }) {
           </div>
           <div>
             <span>TOTAL PROFIT</span>
-            <strong className="profit-value">{plan.totalProfit}</strong>
+            <strong className="profit-value">
+              {formatUsdEquivalent(plan.totalProfit)}
+            </strong>
           </div>
         </div>
         <button
@@ -710,6 +725,7 @@ function Investments() {
               Back practical energy tools that make everyday work easier. Pick a
               product, start small, and grow with a clear plan.
             </p>
+            <p className="currency-rate-note">{USD_RATE_NOTE}</p>
           </div>
           <span className="investment-note">REAL PRODUCTS · REAL IMPACT</span>
         </div>
@@ -776,7 +792,7 @@ function Metrics() {
           <span>PAID CHATS</span>
         </div>
         <div>
-          <strong>UGX 1,285,368</strong>
+          <strong>{formatUsdEquivalent({ value: 1_285_368, currency: "UGX" })}</strong>
           <span>TOTAL PAID OUT</span>
         </div>
         <div className="metric-highlight">
@@ -961,7 +977,10 @@ function Stories() {
               <span>✓ VERIFIED HOST</span>
               <p>{quote}</p>
               <small>
-                UGX {index === 0 ? "8,400" : index === 1 ? "12,500" : "6,800"}{" "}
+                {formatUsdEquivalent({
+                  value: [8_400, 12_500, 6_800][index],
+                  currency: "UGX",
+                })}{" "}
                 PAYOUT
               </small>
             </article>

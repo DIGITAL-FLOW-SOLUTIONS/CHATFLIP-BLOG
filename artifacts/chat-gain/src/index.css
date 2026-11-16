@@ -204,6 +204,7 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
 }
 .investment-heading h2 span { color: #0b8f87; }
 .investment-heading p { max-width: 570px; color: #557079; font-size: 14px; }
+.investment-heading .currency-rate-note { margin-top: 7px; color: #789097; font-size: 11px; }
 .investment-heading .section-label { color: #c48d24; }
 .investment-note {
   padding: 12px 15px;
