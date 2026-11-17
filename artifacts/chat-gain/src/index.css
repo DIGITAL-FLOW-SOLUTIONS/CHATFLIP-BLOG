@@ -625,14 +625,14 @@ button, input { font: inherit; } button { cursor: pointer; } a { color: inherit;
   flex: 1;
   padding: 0 7px;
   border-radius: 18px;
-  background: #104657;
+  background: linear-gradient(135deg, #dc2626, #a71919);
   box-shadow: 0 3px 5px rgba(15, 56, 72, .17);
   font: 700 10px/1 var(--body);
   letter-spacing: 0;
   white-space: nowrap;
 }
 .voices-reference .card-chat:hover {
-  background: #0b3948;
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
 }
 .voices-reference .icon-chat {
   width: 31px;
